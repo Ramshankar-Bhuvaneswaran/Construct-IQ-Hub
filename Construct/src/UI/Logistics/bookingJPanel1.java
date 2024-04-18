@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author manju
  */
-public class bookingJPanel extends javax.swing.JPanel {
+public class bookingJPanel1 extends javax.swing.JPanel {
 
     /**
      * Creates new form bookingJPanel
@@ -31,7 +31,7 @@ public class bookingJPanel extends javax.swing.JPanel {
    Business s;
     JPanel paan;
     LogisticsOrganization log;
-    public bookingJPanel(JPanel pan,Business a,LogisticsOrganization log) {
+    public bookingJPanel1(JPanel pan,Business a,LogisticsOrganization log) {
         initComponents();
         this.s=a;
                 this.log=log;

@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  *
  * @author Ram
  */
-public class RentalCompany extends javax.swing.JPanel {
+public class RentalCompany1 extends javax.swing.JPanel {
 
     /**
      * Creates new form RentalCompany
@@ -21,7 +21,7 @@ public class RentalCompany extends javax.swing.JPanel {
     JPanel p;
     Business s;
     LogisticsOrganization log;
-    public RentalCompany(JPanel pan,Business a,LogisticsOrganization log) {
+    public RentalCompany1(JPanel pan,Business a,LogisticsOrganization log) {
         this.p=pan;
         this.log=log;
         this.s=a;
