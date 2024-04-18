@@ -9,15 +9,19 @@ package Advertising;
  * @author Ram
  */
 public class AdvertisingOptions {
-     private String optionID;
-    private String description;
+    private String optionID;
     private double costPerUnit;
+    private String platformType; // e.g., Online, Print, Outdoor
+    private String targetAudience; // e.g., Adults, Teenagers, Business Professionals
 
-    // Constructor
-    public AdvertisingOptions(String optionID, String description, double costPerUnit) {
+    // Updated Constructor
+    public AdvertisingOptions(String optionID,  double costPerUnit, 
+                             String platformType, String targetAudience) {
         this.optionID = optionID;
-        this.description = description;
+       
         this.costPerUnit = costPerUnit;
+        this.platformType = platformType;
+        this.targetAudience = targetAudience;
     }
 
     // Getters and Setters
@@ -29,13 +33,6 @@ public class AdvertisingOptions {
         this.optionID = optionID;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public double getCostPerUnit() {
         return costPerUnit;
@@ -44,4 +41,28 @@ public class AdvertisingOptions {
     public void setCostPerUnit(double costPerUnit) {
         this.costPerUnit = costPerUnit;
     }
+
+    public String getPlatformType() {
+        return platformType;
+    }
+
+    public void setPlatformType(String platformType) {
+        this.platformType = platformType;
+    }
+
+    public String getTargetAudience() {
+        return targetAudience;
+    }
+
+    public void setTargetAudience(String targetAudience) {
+        this.targetAudience = targetAudience;
+    }
+
+    // Method to display advertising option details
+    public void displayDetails() {
+        System.out.println("Option ID: " + optionID + 
+                           ", Cost Per Unit: $" + costPerUnit + ", Platform Type: " + platformType +
+                           ", Target Audience: " + targetAudience);
+    }
 }
+

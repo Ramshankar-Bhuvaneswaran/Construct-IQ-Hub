@@ -3,35 +3,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Advertising;
-
+import Advertising.AdCampaign;
 /**
  *
  * @author Ram
  */
 public class CampaignPerformance {
-     private String performanceID;
+     
     private String campaignID;
     private int views;
     private int clicks;
+    private AdCampaignList campaign;
     private int conversions;
 
     // Constructor
-    public CampaignPerformance(String performanceID, String campaignID, int views, int clicks, int conversions) {
-        this.performanceID = performanceID;
+    public CampaignPerformance( String campaignID, int views, int clicks, int conversions) {
+        
         this.campaignID = campaignID;
         this.views = views;
         this.clicks = clicks;
         this.conversions = conversions;
     }
 
-    // Getters and Setters
-    public String getPerformanceID() {
-        return performanceID;
-    }
-
-    public void setPerformanceID(String performanceID) {
-        this.performanceID = performanceID;
-    }
 
     public String getCampaignID() {
         return campaignID;
@@ -63,5 +56,14 @@ public class CampaignPerformance {
 
     public void setConversions(int conversions) {
         this.conversions = conversions;
+    }
+       public void displayCustomerAcquisitionCost() {
+           for (AdCampaign n:campaign.adlist){
+        if (conversions > 0) {
+            double cac = n.getBudget() / conversions;
+            System.out.println("Cost of Customer Acquisition (CAC): $" + String.format("%.2f", cac));
+        } else {
+            System.out.println("No conversions to calculate CAC.");
+        }}
     }
 }

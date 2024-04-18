@@ -17,6 +17,14 @@ public class MediaPartner {
     private String partnerName;
     private List<AdvertisingOptions> advertisingOptions;
 
+    public List<AdvertisingOptions> getAdvertisingOptions() {
+        return advertisingOptions;
+    }
+
+    public void setAdvertisingOptions(List<AdvertisingOptions> advertisingOptions) {
+        this.advertisingOptions = advertisingOptions;
+    }
+
     // Constructor
     public MediaPartner(String partnerID, String partnerName) {
         this.partnerID = partnerID;
