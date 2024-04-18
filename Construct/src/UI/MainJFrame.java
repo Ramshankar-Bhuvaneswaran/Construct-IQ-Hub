@@ -1,20 +1,34 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
-package UI.main;
+package ui;
+
+import business.Business;
+import business.ConfigureABusiness;
+import business.Organization.Organization;
+import business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
- * @author Ram
+ * @author Administrator
  */
 public class MainJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form MainJFrame
      */
+    private Business business;
+
     public MainJFrame() {
         initComponents();
+        business = ConfigureABusiness.configure();
+        setSize(800, 600);
+
+        initLoginScreen();
     }
 
     /**
@@ -26,18 +40,13 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mainWorkArea = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        mainWorkArea.setBackground(new java.awt.Color(255, 255, 255));
+        mainWorkArea.setLayout(new java.awt.CardLayout());
+        getContentPane().add(mainWorkArea, java.awt.BorderLayout.PAGE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -76,7 +85,16 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel mainWorkArea;
     // End of variables declaration//GEN-END:variables
+
+    private void initLoginScreen() {
+
+        JPanel loginScreen = new LoginScreen(mainWorkArea, business);
+        mainWorkArea.add("LoginScreen", loginScreen);
+        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+        layout.next(mainWorkArea);
+
+    }
 }
