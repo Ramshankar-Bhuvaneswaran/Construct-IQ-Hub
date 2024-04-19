@@ -90,9 +90,8 @@ RentalCompanyList r=logorg.getRentalvehilist();
         
         
         // Step 2: Initialize a media partner and add advertising options
-        MediaPartner partner = new MediaPartner("MP001", "Global Ads Inc.");
-        partner.addAdvertisingOption(digital);
-        partner.addAdvertisingOption(print);
+        MediaPartner partner = new MediaPartner("Global Ads Inc.");
+        
         m.addAdOption(partner, print);
         // Display media partner details and available advertising options
         System.out.println("Media Partner and Advertising Options:");
