@@ -11,19 +11,21 @@ import java.util.Date;
  * @author Ram
  */
 public class Booking {
-  private String bookingID;
+    private String bookingID;
+    private String orderId;  // Variable to link to an Order
     private Vehicle vehicle;
     private Date startDate;
     private Date endDate;
     private String status;
 
-    // Constructor
-    public Booking(String bookingID, Vehicle vehicle) {
+    public Booking(String bookingID, String orderId, Vehicle vehicle) {
         this.bookingID = bookingID;
+        this.orderId = orderId; // Initialize orderId
         this.vehicle = vehicle;
         this.startDate = new Date(); // Set the start date to today
         this.endDate = null; // End date is initially not set
         this.status = "Pending";
+        this.vehicle.setAvailability(false); // Set the vehicle as not available when booked
     }
 
     public String getBookingID() {
@@ -32,6 +34,14 @@ public class Booking {
 
     public void setBookingID(String bookingID) {
         this.bookingID = bookingID;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public Vehicle getVehicle() {
@@ -46,9 +56,8 @@ public class Booking {
         return startDate;
     }
 
-    // Method to set the start date to today's date
-    public void setStartDateToToday() {
-        this.startDate = new Date(); // Resets the start date to the current date
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     public Date getEndDate() {
@@ -58,6 +67,7 @@ public class Booking {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
         this.status = "Completed"; // Automatically update status to completed when end date is set
+        this.vehicle.setAvailability(true); // Set the vehicle as available again when booking ends
     }
 
     public String getStatus() {
@@ -68,9 +78,10 @@ public class Booking {
         this.status = status;
     }
 
-    // Method to display booking details
+    // Display booking details
     public void displayBookingDetails() {
-        System.out.println("Booking ID: " + bookingID + ", Vehicle ID: " + vehicle.getVehicleID() +
+        System.out.println("Booking ID: " + bookingID + ", Order ID: " + orderId +
+                           ", Vehicle ID: " + vehicle.getVehicleID() +
                            ", Start Date: " + startDate + ", End Date: " + (endDate != null ? endDate : "Not set") +
                            ", Status: " + status);
     }

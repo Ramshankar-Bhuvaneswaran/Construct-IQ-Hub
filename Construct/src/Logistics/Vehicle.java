@@ -9,19 +9,24 @@ package Logistics;
  * @author Ram
  */
 public class Vehicle {
-     private String vehicleID;
+    private String vehicleID;
     private String type;
-    private double capacity;
+    private double capacity; // This is the weight capacity in tons
+    private double volumeCapacity; // Added new attribute for volume capacity in cubic meters
     private boolean availability;
+    private double pricePerHour; // Added new attribute for pricing per hour
 
-    // Constructor
-    public Vehicle(String vehicleID, String type, double capacity, boolean availability) {
+    // Updated Constructor
+    public Vehicle(String vehicleID, String type, double capacity, double volumeCapacity, double pricePerHour) {
         this.vehicleID = vehicleID;
         this.type = type;
         this.capacity = capacity;
-        this.availability = availability;
+        this.volumeCapacity = volumeCapacity;
+        this.availability = true; // Vehicles are available by default
+        this.pricePerHour = pricePerHour;
     }
 
+    // Getters and Setters
     public String getVehicleID() {
         return vehicleID;
     }
@@ -46,7 +51,15 @@ public class Vehicle {
         this.capacity = capacity;
     }
 
-    public boolean isAvailability() {
+    public double getVolumeCapacity() {
+        return volumeCapacity;
+    }
+
+    public void setVolumeCapacity(double volumeCapacity) {
+        this.volumeCapacity = volumeCapacity;
+    }
+
+    public boolean isAvailable() {
         return availability;
     }
 
@@ -54,4 +67,20 @@ public class Vehicle {
         this.availability = availability;
     }
 
+    public double getPricePerHour() {
+        return pricePerHour;
+    }
+
+    public void setPricePerHour(double pricePerHour) {
+        this.pricePerHour = pricePerHour;
+    }
+
+    // Method to display vehicle details
+    public void displayDetails() {
+        System.out.println("Vehicle ID: " + vehicleID + ", Type: " + type + 
+                           ", Capacity: " + capacity + " tons, Volume: " + volumeCapacity + " m³" +
+                           ", Availability: " + (availability ? "Available" : "Not Available") +
+                           ", Price per Hour: $" + pricePerHour);
+    }
 }
+
