@@ -13,34 +13,15 @@ import java.util.List;
  * @author Ram
  */
 public class MediaPartner {
-    private String partnerID;
     private String partnerName;
-    private List<AdvertisingOptions> advertisingOptions;
 
-    public List<AdvertisingOptions> getAdvertisingOptions() {
-        return advertisingOptions;
-    }
-
-    public void setAdvertisingOptions(List<AdvertisingOptions> advertisingOptions) {
-        this.advertisingOptions = advertisingOptions;
-    }
-
+  
     // Constructor
-    public MediaPartner(String partnerID, String partnerName) {
-        this.partnerID = partnerID;
+    public MediaPartner( String partnerName) {
         this.partnerName = partnerName;
-        this.advertisingOptions = new ArrayList<>();
     }
 
-    // Getters and Setters
-    public String getPartnerID() {
-        return partnerID;
-    }
-
-    public void setPartnerID(String partnerID) {
-        this.partnerID = partnerID;
-    }
-
+   
     public String getPartnerName() {
         return partnerName;
     }
@@ -49,11 +30,4 @@ public class MediaPartner {
         this.partnerName = partnerName;
     }
 
-//    public List<AdvertisingOptions> getAdvertisingOptions() {
-//        return advertisingOptions;
-//    }
-
-    public void addAdvertisingOption(AdvertisingOptions option) {
-        advertisingOptions.add(option);
-    }
 }

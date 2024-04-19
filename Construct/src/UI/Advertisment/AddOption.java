@@ -4,7 +4,13 @@
  */
 package UI.Advertisment;
 
+import Advertising.AdvertisingOptions;
+import Advertising.MediaPartner;
+import Advertising.MediaandAdoption;
 import business.Business;
+import business.Organization.AdvertisingOrganization;
+import business.UserAccount.UserAccount;
+import java.util.List;
 import javax.swing.JPanel;
 
 /**
@@ -17,10 +23,12 @@ public class AddOption extends javax.swing.JPanel {
      * Creates new form AddOption
      */
     JPanel p;
-    Business s;
-    public AddOption(JPanel pan,Business a) {
+    AdvertisingOrganization advert;
+    UserAccount usac;
+    public AddOption(JPanel pan,AdvertisingOrganization advert,UserAccount usac) {
         this.p=pan;
-        this.s=a;
+        this.usac=usac;
+        this.advert=advert;
         initComponents();
     }
 
@@ -165,8 +173,18 @@ public class AddOption extends javax.swing.JPanel {
         String planname= jplan.getText();
         String medium= jmedium.getText();
         String audience= jaudi.getText();
-        String costper= jcost.getText();
+        Double costper= Double.parseDouble(jcost.getText());
         
+        MediaandAdoption media=advert.getMediaadlist();
+        for(MediaPartner md:media.getPartnerAdOptions().keySet())
+                
+                {if (md.getPartnerName().equals(usac.getUsername())){
+//                    List<AdvertisingOptions> ad = media.getAdOptions(md);
+                    AdvertisingOptions adoption= new AdvertisingOptions(planname
+                            , costper, medium, audience);
+                    media.addAdOption(md, adoption);
+                }}
+       
         
         
         

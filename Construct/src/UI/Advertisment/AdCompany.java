@@ -52,7 +52,7 @@ public class AdCompany extends javax.swing.JPanel {
         for(MediaPartner md:media.getPartnerAdOptions().keySet())
                 
                 {if (md.getPartnerName().equals(cname)){
-                    for(AdvertisingOptions adop: md.getAdvertisingOptions()){
+                    for(AdvertisingOptions adop: media.getAdOptions(md)){
       Object[] row = new Object[5];
             row[0] = 1;
             row[1] =adop.getOptionID();
@@ -168,7 +168,7 @@ public class AdCompany extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    AddOption cwjp = new AddOption(p, s);
+    AddOption cwjp = new AddOption(p, advert, usac);
 //        p.removeAll();
         p.add("Ad", cwjp);
         ((java.awt.CardLayout) p.getLayout()).next(p);
