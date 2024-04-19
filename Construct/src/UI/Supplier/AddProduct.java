@@ -4,17 +4,26 @@
  */
 package UI.Supplier;
 
+import javax.swing.JPanel;
+import business.Business;
+import business.Organization.QAOrganization;
+import business.UserAccount.UserAccount;
+
 /**
  *
  * @author saisr
  */
 public class AddProduct extends javax.swing.JPanel {
+    
+    Business business;
+    JPanel userProcessContainer;
+    
+    
 
-    /**
-     * Creates new form AddProduct
-     */
-    public AddProduct() {
+       public AddProduct(JPanel userProcessContainer,UserAccount account,QAOrganization QaOrganization, Business business) {
         initComponents();
+        this.business=business;
+        this.userProcessContainer=userProcessContainer;
     }
 
     /**
