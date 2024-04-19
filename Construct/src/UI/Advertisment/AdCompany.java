@@ -10,6 +10,7 @@ import Advertising.MediaandAdoption;
 import Advertising.SelectAdOptionList;
 import business.Business;
 import business.Organization.AdvertisingOrganization;
+import business.UserAccount.UserAccount;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -25,17 +26,17 @@ public class AdCompany extends javax.swing.JPanel {
      */
     JPanel p;
     Business s;
-    MediaPartner a;
+    UserAccount usac;
     AdvertisingOrganization advert;
     
-    public AdCompany(JPanel pan,Business a,MediaPartner m,AdvertisingOrganization advert) {
+    public AdCompany(JPanel pan,UserAccount usac,AdvertisingOrganization advert,Business a) {
         this.p=pan;
         this.s=a;
-        this.a=m;
-                this.advert=advert;
-
+        this.advert=advert;
+        this.usac=usac;
         initComponents();
-        String cname= m.getPartnerName();
+        
+        String cname= usac.getUsername();
         jLabel2.setText(cname);
     }
     public void refresh(){
@@ -45,7 +46,8 @@ public class AdCompany extends javax.swing.JPanel {
             ((DefaultTableModel) jTable1.getModel()).removeRow(i);
         }
         MediaandAdoption media=advert.getMediaadlist();
-                String cname= a.getPartnerName();
+                        String cname= usac.getUsername();
+
 
         for(MediaPartner md:media.getPartnerAdOptions().keySet())
                 

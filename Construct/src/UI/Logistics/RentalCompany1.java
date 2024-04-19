@@ -5,7 +5,9 @@
 package UI.Logistics;
 
 import business.Business;
+import business.Organization.AdvertisingOrganization;
 import business.Organization.LogisticsOrganization;
+import business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
 /**
@@ -17,12 +19,13 @@ public class RentalCompany1 extends javax.swing.JPanel {
     /**
      * Creates new form RentalCompany
      */
-    
+    UserAccount usac;
     JPanel p;
     Business s;
     LogisticsOrganization log;
-    public RentalCompany1(JPanel pan,Business a,LogisticsOrganization log) {
+    public RentalCompany1(JPanel pan,UserAccount usac,LogisticsOrganization log,Business a) {
         this.p=pan;
+        this.usac=usac;
         this.log=log;
         this.s=a;
         initComponents();

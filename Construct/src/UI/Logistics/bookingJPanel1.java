@@ -4,15 +4,12 @@
  */
 package UI.Logistics;
 
-import Logistics.Booking;
-import Logistics.BookingList;
 import Logistics.RentalCompany;
 import Logistics.RentalCompanyList;
 import Logistics.Vehicle;
 import business.Business;
-import business.Organization.AdvertisingOrganization;
 import business.Organization.LogisticsOrganization;
-import business.Organization.Organization;
+import business.UserAccount.UserAccount;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
@@ -30,29 +27,31 @@ public class bookingJPanel1 extends javax.swing.JPanel {
      */
    Business s;
     JPanel paan;
+    UserAccount usac;
     LogisticsOrganization log;
-    public bookingJPanel1(JPanel pan,Business a,LogisticsOrganization log) {
+    public bookingJPanel1(JPanel pan,UserAccount usac,LogisticsOrganization log,Business a) {
         initComponents();
         this.s=a;
-                this.log=log;
-
+        this.usac=usac;
+        this.log=log;
         paan=pan;
         
     }
-      public void refreshprod(){
-    Date startDate = jDateChooser1.getDate();
+    public void refreshprod()
+    {
+        Date startDate = jDateChooser1.getDate();
         Date endDate = jDateChooser2.getDate();
 
         if (startDate == null || endDate == null) {
- JOptionPane.showMessageDialog(this, "Please enter right dates", "Info", JOptionPane.INFORMATION_MESSAGE);           
- return;
+            JOptionPane.showMessageDialog(this, "Please enter right dates", "Info", JOptionPane.INFORMATION_MESSAGE);           
+        return;
         }
 
         long diff = endDate.getTime() - startDate.getTime();
         long days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
         jTextField5.setText(days+"");
 
-    int rc = jTable1.getRowCount();
+        int rc = jTable1.getRowCount();
         int i;
         for (i = rc - 1; i >= 0; i--) {
             ((DefaultTableModel) jTable1.getModel()).removeRow(i);
@@ -69,12 +68,12 @@ public class bookingJPanel1 extends javax.swing.JPanel {
                      if(v.getCapacity()>vol){
 //     
 //     
-      Object[] row = new Object[5];
+            Object[] row = new Object[5];
             row[0] = 1;
             row[1] =v.getVehicleID();
             row[2] = v.getType();
 //            
-           row[3] = v.getPricePerHour()*days ;    
+            row[3] = v.getPricePerHour()*days ;    
 //
             ((DefaultTableModel) jTable1.getModel()).addRow(row);
                 }

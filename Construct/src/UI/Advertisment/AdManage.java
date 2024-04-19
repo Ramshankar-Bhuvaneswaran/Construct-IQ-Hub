@@ -10,6 +10,7 @@ import Advertising.MediaandAdoption;
 import Advertising.SelectAdOptionList;
 import business.Business;
 import business.Organization.AdvertisingOrganization;
+import business.UserAccount.UserAccount;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -24,12 +25,12 @@ public class AdManage extends javax.swing.JPanel {
      * Creates new form NewJPanel
      */
     JPanel p;
-    
+    UserAccount usac;
     Business s;
     AdvertisingOrganization advert;
-    public AdManage(JPanel pan,Business a,AdvertisingOrganization advert) {
+    public AdManage(JPanel pan,UserAccount usac,AdvertisingOrganization advert,Business a) {
                 this.advert=advert;
-
+        this.usac=usac;
         this.p=pan;
         this.s=a;
         initComponents();

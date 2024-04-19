@@ -4,11 +4,11 @@
  */
 package business.Role;
 
+import UI.Advertisment.AdCompany;
 import business.Business;
-import business.Organization.SupplierOrganization;
+import business.Organization.AdvertisingOrganization;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
-import ui.DoctorRole.DoctorWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -24,7 +24,7 @@ public class AdCompanyRole extends Role {
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Business business) {
         this.type = RoleType.AdCompany;
-        return new DoctorWorkAreaJPanel(userProcessContainer, account, (SupplierOrganization) organization, business);
+        return new AdCompany(userProcessContainer, account, (AdvertisingOrganization) organization, business);
     }
 
 }
