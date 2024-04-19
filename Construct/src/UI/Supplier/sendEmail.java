@@ -37,7 +37,7 @@ public class sendEmail extends javax.swing.JPanel {
         initComponents();
         userProcessContainer = upc;
         bb=b;
-        supplierDirectory= b.getSuppliers();
+//         private JPanel userProcessContainer;
         cmbsupplier.removeAllItems();
          for(Supplier supplier : supplierDirectory.getSuppliers()) {
             cmbsupplier.addItem(supplier.getSname());
@@ -101,7 +101,7 @@ public class sendEmail extends javax.swing.JPanel {
 
 //        add(panel);
        
-        setVisible(true);
+//        setVisible(true);
     }
 
     // Method to send email using JavaMail API
@@ -167,7 +167,6 @@ public class sendEmail extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         txtActualPrice1 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
 
         jLabel2.setText("Supplier");
 
@@ -265,20 +264,16 @@ public class sendEmail extends javax.swing.JPanel {
             }
         });
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jLabel1.setBackground(new java.awt.Color(51, 153, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(51, 0, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("RAW MATERIALS FROM DIFFERENT SUPPLIERS");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 420, 33));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Supplier :");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 54, 68, 22));
 
         tableJ.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -301,12 +296,9 @@ public class sendEmail extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tableJ);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 97, 967, 279));
-
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Catalog");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 51, 62, 28));
 
         jButton6.setText("Select");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -314,7 +306,6 @@ public class sendEmail extends javax.swing.JPanel {
                 jButton6ActionPerformed(evt);
             }
         });
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 54, -1, -1));
 
         jTableCart.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -329,15 +320,12 @@ public class sendEmail extends javax.swing.JPanel {
         ));
         jScrollPane4.setViewportView(jTableCart);
 
-        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 421, 714, 181));
-
         jButton8.setText("<<Back");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
-        add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 8, -1, -1));
 
         cmbsupplier1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbsupplier1.addActionListener(new java.awt.event.ActionListener() {
@@ -345,12 +333,10 @@ public class sendEmail extends javax.swing.JPanel {
                 cmbsupplier1ActionPerformed(evt);
             }
         });
-        add(cmbsupplier1, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 54, 166, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Actual Price");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(772, 379, 125, 27));
 
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -358,7 +344,6 @@ public class sendEmail extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(772, 552, 125, -1));
 
         btnBook.setBackground(new java.awt.Color(204, 255, 204));
         btnBook.setText("Book");
@@ -367,27 +352,94 @@ public class sendEmail extends javax.swing.JPanel {
                 btnBookActionPerformed(evt);
             }
         });
-        add(btnBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(772, 605, 125, -1));
-        add(txtActualPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(772, 424, 125, 28));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Order Quantity");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(772, 458, 125, 30));
 
         txtActualPrice1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtActualPrice1ActionPerformed(evt);
             }
         });
-        add(txtActualPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(772, 506, 125, 28));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setText("Cart :");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 376, 152, 27));
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Building-Materials-1024x788.jpg"))); // NOI18N
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 970, 640));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jButton8)
+                .addGap(187, 187, 187)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(cmbsupplier1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jButton6))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 967, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(620, 620, 620)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtActualPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtActualPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(772, 772, 772)
+                .addComponent(btnBook, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton8)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbsupplier1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton6))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(txtActualPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtActualPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAdd)))
+                .addGap(3, 3, 3)
+                .addComponent(btnBook))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -642,14 +694,14 @@ public class sendEmail extends javax.swing.JPanel {
 
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
         // TODO add your handling code here:
-        MasterOrderList mol =  bb.getMasterorderlist();
-        Order order1 = mol.newOrder();
-         int quant= Integer.parseInt(txtActualPrice1.getText());
-        for(Product p :products){
-            order1.newOrderItem(p,p.getPrice(),quant);
-        }
-        
-        
+//        MasterOrderList mol =  bb.getMasterorderlist();
+//        Order order1 = mol.newOrder();
+//         int quant= Integer.parseInt(txtActualPrice1.getText());
+//        for(Product p :products){
+//            order1.newOrderItem(p,p.getPrice(),quant);
+//        }
+//        
+//        
 
         JOptionPane.showMessageDialog(this, "Sales order placed", "Warning", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnBookActionPerformed
@@ -674,7 +726,6 @@ public class sendEmail extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

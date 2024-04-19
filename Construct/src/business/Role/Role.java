@@ -21,7 +21,10 @@ public abstract class Role {
         LogisticsManager("LogisticsManager"),
         RentalCompany("RentalCompany"),
         AdCompany("AdCompany"),
-
+        QualityAssuranceeng("QualityAssuranceeng"),
+        Govteng("Govt"),
+        Supplierlogin("SupplierLogin"),
+        Constructeng("Constructenglogin"),
         LabAssistant("Lab Assistant");
 
         private String value;

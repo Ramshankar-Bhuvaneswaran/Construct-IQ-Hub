@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 public class Product {
     
     private String name;
-    
+    private int Availability;
     private int price;
     private String productDescription;
     private ImageIcon xyz;
@@ -63,9 +63,7 @@ public class Product {
     public void setOrderitems(ArrayList<OrderItem> orderitems) {
         this.orderitems = orderitems;
     }
-    
-    
+       
 
- 
   
 }
