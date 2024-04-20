@@ -7,6 +7,7 @@ package business.Organization;
 import business.Role.AdManagerRole;
 import business.Role.Role;
 import java.util.ArrayList;
+import QA.ApplicationFormDirectory;
 
 /**
  *
@@ -14,8 +15,22 @@ import java.util.ArrayList;
  */
 public class QAOrganization extends Organization{
 
+    public ApplicationFormDirectory getAfd() {
+        return afd;
+    }
+
+    public void setAfd(ApplicationFormDirectory afd) {
+        this.afd = afd;
+    }
+    ApplicationFormDirectory afd;
+    
+    
+    
+
     public QAOrganization() {
         super(Organization.Type.QA.getValue());
+        this.afd = new ApplicationFormDirectory();
+        
     }
     
     @Override
