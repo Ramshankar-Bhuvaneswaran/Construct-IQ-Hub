@@ -8,6 +8,7 @@ import business.Role.AdManagerRole;
 import business.Role.Role;
 import java.util.ArrayList;
 import QA.ApplicationFormDirectory;
+import business.Role.QAengrole;
 
 /**
  *
@@ -36,7 +37,7 @@ public class QAOrganization extends Organization{
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList<>();
-        roles.add(new AdManagerRole());
+        roles.add(new QAengrole());
         return roles;
     }
      

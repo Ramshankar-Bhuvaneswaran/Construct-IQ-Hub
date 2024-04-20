@@ -17,6 +17,8 @@ import Supplier.SupplierDirectory;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import business.Business;
+import business.Organization.SupplierOrganization;
+import business.UserAccount.UserAccount;
 /**
  *
  * @author saisr
@@ -27,16 +29,20 @@ public class sendEmail extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private SupplierDirectory supplierDirectory;
     Business bb;
+    UserAccount account;
+    SupplierOrganization supplierOrganization;
     
-
+    
     /**
      * Creates new form sendEmail
      */
-    public sendEmail(JPanel upc, Business b) {
+    public sendEmail(JPanel userProcessContainer,UserAccount account,SupplierOrganization sOrganization, Business business) {
         
         initComponents();
-        userProcessContainer = upc;
-        bb=b;
+        this.userProcessContainer = userProcessContainer;
+        this.account=account;
+        bb=business;
+        supplierOrganization=sOrganization;
 //         private JPanel userProcessContainer;
         cmbsupplier.removeAllItems();
          for(Supplier supplier : supplierDirectory.getSuppliers()) {

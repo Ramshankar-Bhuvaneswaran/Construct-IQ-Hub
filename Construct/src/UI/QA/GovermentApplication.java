@@ -4,17 +4,35 @@
  */
 package UI.QA;
 
+import business.Business;
+import business.Organization.Organization;
+import business.Organization.QAOrganization;
+import business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Ram
  */
 public class GovermentApplication extends javax.swing.JPanel {
+    
+    JPanel userProcessContainer;
+    UserAccount account;
+    QAOrganization qaOrganization;
+    Business business;
 
     /**
      * Creates new form NewJPanel
      */
-    public GovermentApplication() {
+    public GovermentApplication(JPanel userProcessContainer, UserAccount account, QAOrganization qaOrganization, Business business) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.account=account;
+        this.qaOrganization=qaOrganization;
+        this.business=business;
+        
+        
+        
     }
 
     /**
