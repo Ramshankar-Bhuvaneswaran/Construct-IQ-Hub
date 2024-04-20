@@ -47,13 +47,13 @@ public class AllBookings extends javax.swing.JPanel {
             ((DefaultTableModel) jTable1.getModel()).removeRow(i);
         }
       
-                 RentalCompanyList blist= log.getRentalvehilist();
-               
-         
-          
-        for(RentalCompany a:blist.getVehiclesByCompany().keySet()) {
+        RentalCompanyList blist= log.getRentalvehilist();
+  
+        for(RentalCompany a:blist.getVehiclesByCompany().keySet()) 
+        {
            
-                for(Vehicle v:blist.getVehiclesByCompany().get(a))  {
+                for(Vehicle v:blist.getVehiclesByCompany().get(a))  
+                {
                      if(v.getCapacity()>vol){
 //     
 //     
@@ -65,8 +65,8 @@ public class AllBookings extends javax.swing.JPanel {
             row[3] = v.getPricePerHour()*days ;    
 //
             ((DefaultTableModel) jTable1.getModel()).addRow(row);
-                }
-                }
+        }
+        }
         }
      }     
 

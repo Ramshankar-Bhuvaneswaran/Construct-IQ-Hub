@@ -26,11 +26,12 @@ public class RentalCompany1 extends javax.swing.JPanel {
     JPanel p;
     Business s;
     LogisticsOrganization log;
-    public RentalCompany1(JPanel pan,UserAccount usac,LogisticsOrganization log,Business a) {
+    RentalCompany r;
+    public RentalCompany1(JPanel pan,UserAccount usac,LogisticsOrganization log,RentalCompany r) {
         this.p=pan;
         this.usac=usac;
         this.log=log;
-        this.s=a;
+        this.r=r;
         initComponents();
         jLabel2.setText( (usac.getEmployee() != null) ? usac.getEmployee().getName() : usac.getUsername());
        
@@ -145,7 +146,7 @@ public class RentalCompany1 extends javax.swing.JPanel {
 
     private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
         // TODO add your handling code here:
-        AddOption cwjp = new AddOption(p, log, usac);
+        AddOption cwjp = new AddOption(p, log, usac,r);
 //      p.removeAll();
         p.add("Ad", cwjp);
         ((java.awt.CardLayout) p.getLayout()).next(p);

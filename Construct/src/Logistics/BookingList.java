@@ -14,8 +14,9 @@ import java.util.Iterator;
  */
 public class BookingList implements Iterable<Booking>{
     ArrayList<Booking> bookings;
-
-    public BookingList() {
+    int bookingid;
+    public BookingList() 
+    {
 //    this.c=c;
     bookings=new ArrayList<>();
     }

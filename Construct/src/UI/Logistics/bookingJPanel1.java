@@ -48,21 +48,17 @@ public class bookingJPanel1 extends javax.swing.JPanel {
             ((DefaultTableModel) jTable1.getModel()).removeRow(i);
         }
       
-                 RentalCompanyList blist= log.getRentalvehilist();
-               
-         
-          
+        RentalCompanyList blist= log.getRentalvehilist();
+ 
         for(RentalCompany a:blist.getVehiclesByCompany().keySet()) {
            
-                for(Vehicle v:blist.getVehiclesByCompany().get(a))  {
-                     if(v.getCapacity()>vol){
-//     
-//     
+            for(Vehicle v:blist.getVehiclesByCompany().get(a))  {
+                if(v.getCapacity()>vol)
+            {
             Object[] row = new Object[5];
             row[0] = 1;
             row[1] =v.getVehicleID();
-            row[2] = v.getType();
-//            
+            row[2] = v.getType();  
             row[3] = v.getPricePerHour()*days ;    
 //
             ((DefaultTableModel) jTable1.getModel()).addRow(row);
@@ -272,13 +268,15 @@ public class bookingJPanel1 extends javax.swing.JPanel {
     private void SearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBtnActionPerformed
         // TODO add your handling code here:
         int vol=Integer.parseInt(jTextField1.getText());
-        if (vol<0){            JOptionPane.showMessageDialog(this, "Please enter right volume", "Info", JOptionPane.INFORMATION_MESSAGE);
+        if (vol<0){           
+        JOptionPane.showMessageDialog(this, "Please enter right volume", "Info", JOptionPane.INFORMATION_MESSAGE);
 }
-        else{  Date startDate = jDateChooser1.getDate();
+        else{  
+        Date startDate = jDateChooser1.getDate();
         Date endDate = jDateChooser2.getDate();
 
         if (startDate == null || endDate == null) {
-            JOptionPane.showMessageDialog(this, "Please enter right dates", "Info", JOptionPane.INFORMATION_MESSAGE);           
+        JOptionPane.showMessageDialog(this, "Please enter right dates", "Info", JOptionPane.INFORMATION_MESSAGE);           
         return;
         }
 
