@@ -26,8 +26,8 @@ public class ProductCatalog {
         type = "unknown";
         products = new ArrayList();
     }
-    public Product newProduct(String n, int tp, String pd,ImageIcon xyz) {
-        Product p = new Product(n,tp, pd,xyz);
+    public Product newProduct(String n, int tp, String pd,int availabilty,ImageIcon xyz) {
+        Product p = new Product(n,tp, pd,availabilty,xyz);
         products.add(p);
         return p;
     }
