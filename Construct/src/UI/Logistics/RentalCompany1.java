@@ -33,6 +33,7 @@ public class RentalCompany1 extends javax.swing.JPanel {
         this.s=a;
         initComponents();
         jLabel2.setText( (usac.getEmployee() != null) ? usac.getEmployee().getName() : usac.getUsername());
+       
     }
 
     /**
@@ -45,17 +46,23 @@ public class RentalCompany1 extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        AddBtn = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        bookingsbtn = new javax.swing.JButton();
 
         jLabel5.setText("Vehicle Options");
 
-        jButton1.setText("Add");
+        AddBtn.setText("Add");
+        AddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddBtnActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 204, 204));
         jButton3.setText("Delete");
@@ -80,6 +87,13 @@ public class RentalCompany1 extends javax.swing.JPanel {
 
         jLabel2.setText("                                                 ");
 
+        bookingsbtn.setText("Bookings");
+        bookingsbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookingsbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,10 +113,11 @@ public class RentalCompany1 extends javax.swing.JPanel {
                                 .addComponent(jLabel2))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(bookingsbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(113, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -120,13 +135,32 @@ public class RentalCompany1 extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(AddBtn)
                     .addComponent(jButton3))
-                .addGap(188, 188, 188))
+                .addGap(92, 92, 92)
+                .addComponent(bookingsbtn)
+                .addGap(74, 74, 74))
         );
     }// </editor-fold>//GEN-END:initComponents
-    public void refresh(){
-    int rc = jTable1.getRowCount();
+
+    private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
+        // TODO add your handling code here:
+        AddOption cwjp = new AddOption(p, log, usac);
+//      p.removeAll();
+        p.add("Ad", cwjp);
+        ((java.awt.CardLayout) p.getLayout()).next(p);
+    }//GEN-LAST:event_AddBtnActionPerformed
+
+    private void bookingsbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingsbtnActionPerformed
+        // TODO add your handling code here:
+         RentalBookings cwjp = new RentalBookings(p, log, usac);
+//      p.removeAll();
+        p.add("rent", cwjp);
+        ((java.awt.CardLayout) p.getLayout()).next(p);
+    }//GEN-LAST:event_bookingsbtnActionPerformed
+    public void refresh()
+    {
+        int rc = jTable1.getRowCount();
         int i;
         for (i = rc - 1; i >= 0; i--) {
             ((DefaultTableModel) jTable1.getModel()).removeRow(i);
@@ -135,30 +169,24 @@ public class RentalCompany1 extends javax.swing.JPanel {
         RentalCompanyList rentlistv=log.getRentalvehilist();
         for (RentalCompany r: rentlistv.getVehiclesByCompany().keySet())
         {
-            for(Vehicle v: rentlistv.getVehicles(r))
-            
-                
+            for(Vehicle v: rentlistv.getVehicles(r))   
             {
             Object[] row = new Object[6];
             row[0] = 1;
             row[1] =v.getVehicleID();
             row[2] = v.getType() ;
-//           
-           row[3] = v.getCapacity();
-           row[4]=v.isAvailable();
-           row[5]=v.getPricePerHour();
-//
+            row[3] = v.getCapacity();
+            row[4]=v.isAvailable();
+            row[5]=v.getPricePerHour();
             ((DefaultTableModel) jTable1.getModel()).addRow(row);
         }
         }
     
-    
-    
-    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton AddBtn;
+    private javax.swing.JButton bookingsbtn;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
