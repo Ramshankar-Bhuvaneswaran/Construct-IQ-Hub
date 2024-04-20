@@ -38,6 +38,7 @@ public class QAOrganization extends Organization{
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList<>();
         roles.add(new QAengrole());
+       
         return roles;
     }
      
