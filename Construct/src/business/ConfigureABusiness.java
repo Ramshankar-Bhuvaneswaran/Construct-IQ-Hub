@@ -72,6 +72,7 @@ public class ConfigureABusiness {
         AdvertisingOrganization adorg= new AdvertisingOrganization();
         business.getOrganizationDirectory().getOrganizationList().add(adorg);
         
+
         SupplierOrganization supprg = new SupplierOrganization();
         business.getOrganizationDirectory().getOrganizationList().add(supprg);
         
@@ -79,6 +80,7 @@ public class ConfigureABusiness {
         business.getOrganizationDirectory().getOrganizationList().add(qa);
         
         Vehicle vehicle = new Vehicle("VH101", "Truck", 2.5, 20.0, 75.0);
+
         
         RentalCompany rentalCompany = new RentalCompany("Best Rentals");
 //        rentalCompany.addVehicle(vehicle);
