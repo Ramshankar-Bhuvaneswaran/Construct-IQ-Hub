@@ -14,6 +14,14 @@ import javax.swing.ImageIcon;
 public class Product {
     
     private String name;
+
+    public int getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(int availability) {
+        this.availability = availability;
+    }
     private int availability;
     private int price;
     private String productDescription;
@@ -63,6 +71,11 @@ public class Product {
 
     public void setOrderitems(ArrayList<OrderItem> orderitems) {
         this.orderitems = orderitems;
+    }
+    
+    @Override
+    public String toString(){
+        return name;
     }
        
 
