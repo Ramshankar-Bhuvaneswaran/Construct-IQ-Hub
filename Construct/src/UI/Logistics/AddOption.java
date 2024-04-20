@@ -128,7 +128,7 @@ public class AddOption extends javax.swing.JPanel {
                         .addComponent(jprice, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,20 +181,17 @@ public class AddOption extends javax.swing.JPanel {
         Double capacity= Double.parseDouble(jcapa.getText());
         
         RentalCompanyList rentlistv=log.getRentalvehilist();
+                String a=(usac.getEmployee() != null) ? usac.getEmployee().getName() : usac.getUsername();
+
         for (RentalCompany r: rentlistv.getVehiclesByCompany().keySet())
-        {
-            for(Vehicle v: rentlistv.getVehicles(r))
+        {   
+            if(r.getCompanyName().equals(a))
             {
-//                    List<AdvertisingOptions> ad = media.getAdOptions(md);
-                    AdvertisingOptions adoption= new AdvertisingOptions(planname
-                            , costper, medium, audience);
-                    media.addAdOption(md, adoption);
-                }}
-       
-        
-        
-        
-        
+                Vehicle v= new Vehicle(vehiclename, type, priceper, capacity);
+                rentlistv.addVehicle(r, v);
+            }  
+        }
+
     }//GEN-LAST:event_AddBtnActionPerformed
 
 
