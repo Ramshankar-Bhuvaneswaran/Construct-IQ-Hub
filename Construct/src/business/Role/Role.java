@@ -24,7 +24,7 @@ public abstract class Role {
         QualityAssuranceeng("QualityAssuranceeng"),
         Govteng("Govt"),
         Supplierlogin("SupplierLogin"),
-        Constructeng("Constructenglogin"),
+        Civilengineer("CivilEngineerLogin"),
         LabAssistant("Lab Assistant");
 
         private String value;

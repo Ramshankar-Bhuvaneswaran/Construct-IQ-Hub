@@ -4,17 +4,30 @@
  */
 package UI.QA;
 
+import business.Business;
+import business.Organization.Organization;
+import business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+import business.Organization.QAOrganization;
+
 /**
  *
  * @author saisr
  */
 public class SubmitApprovalForm extends javax.swing.JPanel {
 
-    /**
-     * Creates new form SubmitApprovalForm
-     */
-    public SubmitApprovalForm() {
+    JPanel userProcessContainer;
+    UserAccount account;
+    Organization organization;
+    QAOrganization Qao;
+    
+    Business business;
+    public SubmitApprovalForm(JPanel userProcessContainer, UserAccount account,QAOrganization Qao , Business business) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.account=account;
+        this.Qao=Qao;
+        
     }
 
     /**

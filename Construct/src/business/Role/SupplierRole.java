@@ -4,25 +4,22 @@
  */
 package business.Role;
 
-import UI.QA.SubmitApprovalForm;
+import UI.Supplier.CreateNewProductJPanel;
 import business.Business;
 import business.Organization.Organization;
+import business.Organization.SupplierOrganization;
 import business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import ui.LabAssistantRole.LabAssistantWorkAreaJPanel;
-import business.Organization.QAOrganization;
 
 /**
  *
  * @author saisr
  */
-public class QAengrole extends Role {
+public class SupplierRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Business business) {
-        
-        return new SubmitApprovalForm(userProcessContainer, account, (QAOrganization) organization  , business);
-        
+        return  new CreateNewProductJPanel(userProcessContainer, account, (SupplierOrganization) organization  ,business);
     }
     
 }

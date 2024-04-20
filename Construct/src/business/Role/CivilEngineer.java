@@ -4,25 +4,20 @@
  */
 package business.Role;
 
-import UI.QA.SubmitApprovalForm;
 import business.Business;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import ui.LabAssistantRole.LabAssistantWorkAreaJPanel;
-import business.Organization.QAOrganization;
 
 /**
  *
  * @author saisr
  */
-public class QAengrole extends Role {
+public class CivilEngineer extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Business business) {
-        
-        return new SubmitApprovalForm(userProcessContainer, account, (QAOrganization) organization  , business);
-        
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
