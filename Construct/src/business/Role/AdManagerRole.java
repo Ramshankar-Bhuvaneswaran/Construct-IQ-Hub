@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author saisr
+ * @author raunak
  */
 public class AdManagerRole extends Role {
 
