@@ -12,6 +12,7 @@ import java.util.Properties;
 import Supplier.MasterOrderList;
 import Supplier.Order;
 import Supplier.Product;
+import Supplier.ProductCatalog;
 import Supplier.Supplier;
 import Supplier.SupplierDirectory;
 import java.util.ArrayList;
@@ -19,15 +20,17 @@ import javax.swing.table.DefaultTableModel;
 import business.Business;
 import business.Organization.SupplierOrganization;
 import business.UserAccount.UserAccount;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
+
 /**
  *
  * @author saisr
  */
 public class sendEmail extends javax.swing.JPanel {
     
-    ArrayList<Product> products;
+    private ArrayList<Product> products;
     private JPanel userProcessContainer;
-    private SupplierDirectory supplierDirectory;
     Business bb;
     UserAccount account;
     SupplierOrganization supplierOrganization;
@@ -44,37 +47,40 @@ public class sendEmail extends javax.swing.JPanel {
         bb=business;
         supplierOrganization=sOrganization;
 //         private JPanel userProcessContainer;
-        cmbsupplier.removeAllItems();
+        cmbsupplier1.removeAllItems();
+        SupplierDirectory supplierDirectory= supplierOrganization.getSuppliers();
          for(Supplier supplier : supplierDirectory.getSuppliers()) {
-            cmbsupplier.addItem(supplier.getSname());
+            cmbsupplier1.addItem(supplier.getSname());
+            this.products = new ArrayList<Product>();
          
         }
-
+        setupTableTextWrap(); 
+//
+//        
+//        String FromEmail ="saisrunith12@gmail.com";
+//        String ToEmail="saisrunith54@gmail.com";
+//        String FromEmailPassword ="Shivani123$";
+//        Properties properties= new Properties();
+//        properties.put("mail.smtp.auth", "true");
+//        properties.put("mail.smtp.startls.enable", "true");
+//        properties.put("mail.smtp.host", "smtp.gmail.com");
+//        properties.put("mail.smtp.port", "587");
         
-        String FromEmail ="saisrunith12@gmail.com";
-        String ToEmail="saisrunith54@gmail.com";
-        String FromEmailPassword ="Shivani123$";
-        Properties properties= new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.startls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
+//        Session session =Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
+//           protected PasswordAuthentication getPasswordAuthentication(){
+//               return new PasswordAuthentication(FromEmail, FromEmailPassword);
+//           } 
+//        });
         
-        Session session =Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
-           protected PasswordAuthentication getPasswordAuthentication(){
-               return new PasswordAuthentication(FromEmail, FromEmailPassword);
-           } 
-        });
-        
-        try{
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(FromEmail));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(ToEmail));
-            Transport.send(message);
-        }catch(Exception ex){
-            System.out.println(""+ex);
-        }
-        
+//        try{
+//            MimeMessage message = new MimeMessage(session);
+//            message.setFrom(new InternetAddress(FromEmail));
+//            message.addRecipient(Message.RecipientType.TO, new InternetAddress(ToEmail));
+//            Transport.send(message);
+//        }catch(Exception ex){
+//            System.out.println(""+ex);
+//        }
+//        
         
         
         
@@ -277,7 +283,7 @@ public class sendEmail extends javax.swing.JPanel {
         jLabel1.setText("RAW MATERIALS FROM DIFFERENT SUPPLIERS");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Supplier :");
 
@@ -303,7 +309,6 @@ public class sendEmail extends javax.swing.JPanel {
         jScrollPane3.setViewportView(tableJ);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Catalog");
 
         jButton6.setText("Select");
@@ -661,14 +666,15 @@ public class sendEmail extends javax.swing.JPanel {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        String supplier = (String) cmbsupplier.getSelectedItem();
-     refreshprod(supplier);
+        String supplier = (String) cmbsupplier1.getSelectedItem();
+        refreshprod(supplier);
+        System.out.println(supplier);
         System.out.println(supplier);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-//        userProcessContainer.remove(this);
-//        ((java.awt.CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
+        userProcessContainer.remove(this);
+        ((java.awt.CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void cmbsupplier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbsupplier1ActionPerformed
@@ -688,30 +694,48 @@ public class sendEmail extends javax.swing.JPanel {
         int actp= Integer.parseInt(txtActualPrice.getText());
         int quant= Integer.parseInt(txtActualPrice1.getText());
 
-        int row = tblCatalog.getSelectedRow();
+        int row = tableJ.getSelectedRow();
         if(row<0){
             JOptionPane.showMessageDialog(null, "Please select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        Product s = (Product) tblCatalog.getValueAt(row, 0);
-        
+        Product s = (Product) tableJ.getValueAt(row, 0);
+        System.out.println(s.getName());
+        System.out.println();
+        s.setAvailability(quant);
+        s.setPrice(actp);
         products.add(s);
+        refreshorder();
+        
 //
 //        MasterOrderList mol =  bb.getMasterorderlist();
 //        Order order1 = mol.newOrder();
 //        order1.newOrderItem(s,actp,quant);
             
-        refreshorder(actp,quant);
+//        refreshorder(actp,quant);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
         // TODO add your handling code here:
-//        MasterOrderList mol =  bb.getMasterorderlist();
-//        Order order1 = mol.newOrder();
-//         int quant= Integer.parseInt(txtActualPrice1.getText());
-//        for(Product p :products){
-//            order1.newOrderItem(p,p.getPrice(),quant);
-//        }
+       MasterOrderList mol= supplierOrganization.getMasterorderlist();
+       ProductCatalog pC=supplierOrganization.getPc();
+        Order order1 = mol.newOrder();
+        int quant= Integer.parseInt(txtActualPrice1.getText());
+        for(Product p :products){
+            for(Product p2: pC.getProducts()){
+                if(p2.getName().equals(p.getName())){
+                    if(p.getAvailability()<p2.getAvailability()){
+                         order1.newOrderItem(p,p.getPrice(),quant);
+                         p2.setAvailability(p2.getAvailability()-p.getAvailability());
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Quantity unavailable");
+                    }
+                    
+                }
+                
+            }
+        }
 //        
 //        
 
@@ -760,25 +784,36 @@ public class sendEmail extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void refreshprod(String sp) {
-        int rc = tblCatalog.getRowCount();
-        int i;
-        for (i = rc - 1; i >= 0; i--) {
-            ((DefaultTableModel) tableJ.getModel()).removeRow(i);
-        }
+        DefaultTableModel model = (DefaultTableModel) tableJ.getModel();
+        model.setRowCount(0);
+//        int rc = tblCatalog.getRowCount();
+//        int i;
+//        for (i = rc - 1; i >= 0; i--) {
+//            ((DefaultTableModel) tableJ.getModel()).removeRow(i);
+//        }
+
+
         
-        
+        SupplierDirectory supplierDirectory= supplierOrganization.getSuppliers();
+        System.out.println(supplierDirectory);
         for(Supplier supplierp : supplierDirectory.getSuppliers()) {
             if(sp.equals(supplierp.getSname())){
+                System.out.println(sp);
                 for(Product p: supplierp.getPc().getProductList())  {
-     
-     
-      Object[] row = new Object[4];
+                    ImageIcon icon = p.getXyz();
+                if (icon != null) {
+            // Scale the icon if necessary
+                Image image = icon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+                icon = new ImageIcon(image);
+        }
+          
+            Object[] row = new Object[5];
             row[0] = p;
             row[1] = p.getPrice();
             row[2] = p.getProductDescription();
+            row[3]=icon;
+            row[4]=p.getAvailability();
             
-              
-//           row[4]=p.;
 
             ((DefaultTableModel) tableJ.getModel()).addRow(row);     
      }                     
@@ -786,23 +821,64 @@ public class sendEmail extends javax.swing.JPanel {
         }
             }
 
-    private void refreshorder(int x, int y) {
+    private void refreshorder() {
         
-         int rc = jTableCart.getRowCount();
-        int i;
-        for (i = rc - 1; i >= 0; i--) {
-            ((DefaultTableModel) jTableCart.getModel()).removeRow(i);
-        }
-        Object[] row = new Object[4];
+        DefaultTableModel model = (DefaultTableModel) jTableCart.getModel();
+        model.setRowCount(0);
+           
+//        int rc = jTableCart.getRowCount();
+//        int i;
+//        for (i = rc - 1; i >= 0; i--) {
+//            ((DefaultTableModel) jTableCart.getModel()).removeRow(i);
+//        }
+        Object[] row = new Object[3];
         for(Product p1: products){
             row[0] = p1;
-            row[1] = p1.getPrice();
-            row[2] = p1.getName();
+            row[1] = p1.getAvailability();
+            row[2] = (p1.getAvailability())*(p1.getPrice());
             
-            
-            ((DefaultTableModel) jTable2.getModel()).addRow(row);
+            ((DefaultTableModel) jTableCart.getModel()).addRow(row);
             
         }
         
     }
+    private void setupTableTextWrap() {
+        tableJ.setDefaultRenderer(Object.class, new TableCellRenderer() {
+            private final JTextArea textArea = new JTextArea();
+ 
+            {
+                textArea.setLineWrap(true);
+                textArea.setWrapStyleWord(true);
+                textArea.setOpaque(true);
+            }
+ 
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                if (value instanceof ImageIcon) {
+                    return new JLabel((ImageIcon) value);
+                } else {
+                    textArea.setText(value != null ? value.toString() : "");
+                    textArea.setBackground(isSelected ? table.getSelectionBackground() : table.getBackground());
+                    textArea.setForeground(isSelected ? table.getSelectionForeground() : table.getForeground());
+                    return textArea;
+                    
+                }
+            }
+        });
+        tableJ.setRowHeight(60);
+    }
+    public class ImageRenderer extends DefaultTableCellRenderer {
+ 
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            if (value instanceof ImageIcon) {
+                JLabel label = new JLabel();
+                label.setIcon((ImageIcon) value);
+                return label;
+            }
+            return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        }
+    }
+    
+    
 }
