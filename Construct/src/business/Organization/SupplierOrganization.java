@@ -10,12 +10,16 @@ import business.Role.Role;
 import java.util.ArrayList;
 import Supplier.ProductCatalog;
 import Supplier.SupplierDirectory;
+import business.Role.CivilEngineer;
+import business.Role.SupplierRole;
 
 /**
  *
  * @author raunak
  */
 public class SupplierOrganization extends Organization{
+    
+    
 
     public MasterOrderList getMasterorderlist() {
         return masterorderlist;
@@ -56,7 +60,8 @@ public class SupplierOrganization extends Organization{
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList<>();
-        roles.add(new AdManagerRole());
+        roles.add(new SupplierRole());
+        roles.add(new CivilEngineer());
         return roles;
     }
     
