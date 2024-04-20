@@ -4,11 +4,14 @@
  */
 package UI.Logistics;
 
+import Logistics.RentalCompany;
+import Logistics.RentalCompanyList;
+import Logistics.Vehicle;
 import business.Business;
-import business.Organization.AdvertisingOrganization;
 import business.Organization.LogisticsOrganization;
 import business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,6 +32,7 @@ public class RentalCompany1 extends javax.swing.JPanel {
         this.log=log;
         this.s=a;
         initComponents();
+        jLabel2.setText( (usac.getEmployee() != null) ? usac.getEmployee().getName() : usac.getUsername());
     }
 
     /**
@@ -47,6 +51,7 @@ public class RentalCompany1 extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
 
         jLabel5.setText("Vehicle Options");
 
@@ -73,6 +78,8 @@ public class RentalCompany1 extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel2.setText("                                                 ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,7 +93,10 @@ public class RentalCompany1 extends javax.swing.JPanel {
                         .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabel2))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -100,8 +110,10 @@ public class RentalCompany1 extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addGap(54, 54, 54)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -110,15 +122,46 @@ public class RentalCompany1 extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton3))
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addGap(188, 188, 188))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    public void refresh(){
+    int rc = jTable1.getRowCount();
+        int i;
+        for (i = rc - 1; i >= 0; i--) {
+            ((DefaultTableModel) jTable1.getModel()).removeRow(i);
+        }
+        
+        RentalCompanyList rentlistv=log.getRentalvehilist();
+        for (RentalCompany r: rentlistv.getVehiclesByCompany().keySet())
+        {
+            for(Vehicle v: rentlistv.getVehicles(r))
+            
+                
+            {
+            Object[] row = new Object[6];
+            row[0] = 1;
+            row[1] =v.getVehicleID();
+            row[2] = v.getType() ;
+//           
+           row[3] = v.getCapacity();
+           row[4]=v.isAvailable();
+           row[5]=v.getPricePerHour();
+//
+            ((DefaultTableModel) jTable1.getModel()).addRow(row);
+        }
+        }
+    
+    
+    
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;

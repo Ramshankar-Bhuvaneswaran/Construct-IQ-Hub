@@ -26,7 +26,11 @@
                       <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel5" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel4" min="-2" pref="111" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jButton1" min="-2" pref="109" max="-2" attributes="0"/>
@@ -47,8 +51,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-              <Component id="jLabel4" min="-2" pref="24" max="-2" attributes="0"/>
+              <EmptySpace pref="76" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel4" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" pref="24" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -58,7 +65,7 @@
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="188" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -149,5 +156,10 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="                                                 "/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
