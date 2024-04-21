@@ -4,10 +4,7 @@
  */
 package business;
 
-import Advertising.AdCampaign;
-import Advertising.AdCampaignList;
 import Advertising.AdvertisingOptions;
-import Advertising.CampaignPerformance;
 import Advertising.MediaPartner;
 import Advertising.MediaandAdoption;
 import Logistics.Booking;
@@ -93,8 +90,8 @@ RentalCompanyList r=logorg.getRentalvehilist();
         r.displayAllVehicles();
         // Step 3: Book the vehicle for a specific order
 //        BookingList b=logorg.getRentalvehilist();
-        rentalCompany.create("BK001", "ORD001", vehicle);
-                rentalCompany.create("BK002", "ORD002", vehicle);
+//        rentalCompany.create("BK001", "ORD001", vehicle);
+//                rentalCompany.create("BK002", "ORD002", vehicle);/\
 
 //        rentalCompany.setBookings(booking);
 //        rentalCompany.setBookings(booking2);
@@ -123,12 +120,6 @@ RentalCompanyList r=logorg.getRentalvehilist();
         System.out.println("Media Partner and Advertising Options:");
 //        partner.displayDetails();
 
-// Step 3: Create an advertising campaign
-        AdCampaignList adlistt= adorg.getAdcampaignlist();
-        AdCampaign campaign = new AdCampaign("CAMP001", "Digital", new Date(), new Date(System.currentTimeMillis() + (1000 * 60 * 60 * 24 * 30)), 10000.00);
-        
-// Step 4: Track and display the performance of the campaign
-        CampaignPerformance performance = new CampaignPerformance("PERF001", 15000, 500, 50);
         System.out.println("Campaign Performance Details:");
         
        SupplierDirectory sd= supprg.getSuppliers();

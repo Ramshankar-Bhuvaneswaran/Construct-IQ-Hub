@@ -66,12 +66,11 @@ public class Vehicle {
         this.pricePerHour = pricePerHour;
     }
 
-    // Method to display vehicle details
-    public void displayDetails() {
-        System.out.println("Vehicle ID: " + vehicleID + ", Type: " + type + 
-                           ", Capacity: " + capacity + " tons, Volume: " + 
-                           ", Availability: " + (availability ? "Available" : "Not Available") +
-                           ", Price per Hour: $" + pricePerHour);
-    }
+   @Override
+   public String toString(){
+   
+        return vehicleID;
+   
+   }
 }
 

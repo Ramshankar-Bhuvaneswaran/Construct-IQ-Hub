@@ -3,8 +3,7 @@
  * and open the template in the editor.
  */
 package business.Organization;
-
-import Advertising.AdCampaignList;
+;
 import Advertising.MediaandAdoption;
 import Advertising.SelectAdOptionList;
 import Logistics.BookingList;
