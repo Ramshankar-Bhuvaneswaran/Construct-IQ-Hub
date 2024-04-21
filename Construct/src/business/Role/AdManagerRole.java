@@ -4,7 +4,8 @@
  */
 package business.Role;
 
-import UI.Advertisment.AdCompany;
+//import UI.Advertisment.AdCompany;
+//import UI.Advertisment.AdManage;
 import UI.Advertisment.AdManage;
 import business.Business;
 import business.Organization.AdvertisingOrganization;
