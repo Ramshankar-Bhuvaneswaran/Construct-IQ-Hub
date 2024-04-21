@@ -79,7 +79,7 @@ public class ConfigureABusiness {
         QAOrganization qa=new QAOrganization();
         business.getOrganizationDirectory().getOrganizationList().add(qa);
         
-        Vehicle vehicle = new Vehicle("VH101", "Truck", 2.5, 20.0, 75.0);
+        Vehicle vehicle = new Vehicle("VH101", "Truck", 2.5, 20.0);
 
         
         RentalCompany rentalCompany = new RentalCompany("Best Rentals");
