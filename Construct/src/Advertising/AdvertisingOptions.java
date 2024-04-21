@@ -64,5 +64,10 @@ public class AdvertisingOptions {
                            ", Cost Per Unit: $" + costPerUnit + ", Platform Type: " + platformType +
                            ", Target Audience: " + targetAudience);
     }
+@Override
+    public String toString(){
+        return optionID;
+    }
 }
+
 

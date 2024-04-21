@@ -47,4 +47,14 @@ public class MediaandAdoption {
             }
         }
     }
+    public void removeAdOption(MediaPartner partner, AdvertisingOptions adOption) {
+        List<AdvertisingOptions> options = partnerAdOptions.get(partner);
+        if (options != null) {
+            options.remove(adOption);
+            // Remove the entry if no advertising options are left
+            if (options.isEmpty()) {
+                partnerAdOptions.remove(partner);
+            }
+        }
+    }
 }

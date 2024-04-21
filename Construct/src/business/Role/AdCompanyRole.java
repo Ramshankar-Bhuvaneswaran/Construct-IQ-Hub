@@ -24,7 +24,7 @@ public class AdCompanyRole extends Role {
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Business business) {
         this.type = RoleType.AdCompany;
-        return new AdCompany(userProcessContainer, account, (AdvertisingOrganization) organization, business);
+        return new AdCompany(userProcessContainer, account, (AdvertisingOrganization) organization);
     }
 
 }
