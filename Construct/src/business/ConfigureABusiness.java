@@ -138,15 +138,26 @@ public class ConfigureABusiness {
          RentalCompany rentalCompany = new RentalCompany(usa.getUsername());
          blist.addVehicle(rentalCompany, null);
         }}
+        
+        for(UserAccount usa:adorg.getUserAccountDirectory().getUserAccountList())
+        {
+        if(usa.getRole() instanceof AdCompanyRole)
+        {
+             MediaandAdoption media=adorg.getMediaadlist();
+        
+         MediaPartner adc = new MediaPartner(usa.getUsername());
+         media.addAdOption(adc, null);
+        }}
+        
         Vehicle vehicle = new Vehicle("VH101", "Truck", 2.5, 75.0);
-
+        
         SupplierOrganization supprg = new SupplierOrganization();
         business.getOrganizationDirectory().getOrganizationList().add(supprg);
         
         QAOrganization qa=new QAOrganization();
         business.getOrganizationDirectory().getOrganizationList().add(qa);
         
-        Vehicle vehicle = new Vehicle("VH101", "Truck", 2.5, 20.0, 75.0);
+//        Vehicle vehicle = new Vehicle("VH101", "Truck", 2.5, 20.0);
 
         
         RentalCompany rentalCompany = new RentalCompany("Best Rentals");
