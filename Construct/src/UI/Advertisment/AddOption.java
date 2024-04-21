@@ -10,6 +10,8 @@ import Advertising.MediaandAdoption;
 import business.Business;
 import business.Organization.AdvertisingOrganization;
 import business.UserAccount.UserAccount;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -30,6 +32,25 @@ public class AddOption extends javax.swing.JPanel {
         this.usac=usac;
         this.advert=advert;
         initComponents();
+                jComboBox1.removeAllItems();
+
+        MediaandAdoption media=advert.getMediaadlist();
+        ArrayList<String> inputList = new ArrayList<>();
+        for(MediaPartner md:media.getPartnerAdOptions().keySet())
+        {
+        for(AdvertisingOptions adop: media.getAdOptions(md))
+        {
+            if(adop!=null)
+            {            System.out.println(adop.getPlatformType());
+            String medium= adop.getPlatformType();
+            inputList.add(medium);
+        }}
+        }
+        HashSet<String> uniqueSet = new HashSet<>(inputList);
+        for(String a: uniqueSet){
+                        jComboBox1.addItem(a);
+
+        }
     }
 
     /**
@@ -45,12 +66,12 @@ public class AddOption extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jplan = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jmedium = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jcost = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jaudi = new javax.swing.JTextField();
         AddBtn = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Advertisement Managing");
@@ -66,12 +87,6 @@ public class AddOption extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Medium:");
-
-        jmedium.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmediumActionPerformed(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Cost Per Unit:");
@@ -98,17 +113,24 @@ public class AddOption extends javax.swing.JPanel {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(188, 188, 188)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jmedium, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -135,10 +157,10 @@ public class AddOption extends javax.swing.JPanel {
                     .addComponent(jplan, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jmedium, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcost, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -156,10 +178,6 @@ public class AddOption extends javax.swing.JPanel {
         // TODO a````dd your handling code here:
     }//GEN-LAST:event_jplanActionPerformed
 
-    private void jmediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmediumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jmediumActionPerformed
-
     private void jcostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcostActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcostActionPerformed
@@ -170,8 +188,9 @@ public class AddOption extends javax.swing.JPanel {
 
     private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
         // TODO add your handling code here:
+        String medium = (String) jComboBox1.getSelectedItem();
         String planname= jplan.getText();
-        String medium= jmedium.getText();
+        
         String audience= jaudi.getText();
         Double costper= Double.parseDouble(jcost.getText());
         
@@ -184,16 +203,24 @@ public class AddOption extends javax.swing.JPanel {
                             , costper, medium, audience);
                     media.addAdOption(md, adoption);
                 }}
-       
+        AdCompany cwjp = new AdCompany(p, usac, advert);
+//        p.removeAll();
+        p.add("Adm", cwjp);
+        ((java.awt.CardLayout) p.getLayout()).next(p);
         
         
         
         
     }//GEN-LAST:event_AddBtnActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBtn;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -201,7 +228,6 @@ public class AddOption extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jaudi;
     private javax.swing.JTextField jcost;
-    private javax.swing.JTextField jmedium;
     private javax.swing.JTextField jplan;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,7 +4,8 @@
  */
 package business.Role;
 
-import UI.Advertisment.AdCompany;
+//import UI.Advertisment.AdCompany;
+//import UI.Advertisment.AdManage;
 import UI.Advertisment.AdManage;
 import business.Business;
 import business.Organization.AdvertisingOrganization;
@@ -27,7 +28,7 @@ public class AdManagerRole extends Role {
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Business business) {
         this.type = RoleType.AdManager;
-        return new AdManage(userProcessContainer, account, (AdvertisingOrganization) organization, business);
+        return new AdManage(userProcessContainer, account, (AdvertisingOrganization) organization);
     }
 
 }

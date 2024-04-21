@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package UI.Supplier;
-import javax.mail.*;
-import javax.mail.internet.*;
+//import javax.mail.*;
+//import javax.mail.internet.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -280,7 +280,6 @@ public class sendEmail extends javax.swing.JPanel {
         setBackground(new java.awt.Color(204, 255, 51));
 
         jLabel7.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 204, 204));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Supplier :");
 
@@ -306,12 +305,10 @@ public class sendEmail extends javax.swing.JPanel {
         jScrollPane3.setViewportView(tableJ);
 
         jLabel8.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 204, 204));
         jLabel8.setText("Catalog");
 
         jButton6.setBackground(new java.awt.Color(0, 204, 204));
         jButton6.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(204, 255, 51));
         jButton6.setText("Select");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -334,7 +331,6 @@ public class sendEmail extends javax.swing.JPanel {
 
         jButton8.setBackground(new java.awt.Color(0, 204, 204));
         jButton8.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 12)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(204, 255, 51));
         jButton8.setText("<<Back");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -344,7 +340,6 @@ public class sendEmail extends javax.swing.JPanel {
 
         cmbsupplier1.setBackground(new java.awt.Color(0, 204, 204));
         cmbsupplier1.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 12)); // NOI18N
-        cmbsupplier1.setForeground(new java.awt.Color(204, 255, 51));
         cmbsupplier1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbsupplier1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -353,13 +348,11 @@ public class sendEmail extends javax.swing.JPanel {
         });
 
         jLabel11.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 204, 204));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Actual Price");
 
         btnAdd.setBackground(new java.awt.Color(0, 204, 204));
         btnAdd.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 12)); // NOI18N
-        btnAdd.setForeground(new java.awt.Color(204, 255, 51));
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -369,7 +362,6 @@ public class sendEmail extends javax.swing.JPanel {
 
         btnBook.setBackground(new java.awt.Color(0, 204, 204));
         btnBook.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 12)); // NOI18N
-        btnBook.setForeground(new java.awt.Color(204, 255, 51));
         btnBook.setText("Book");
         btnBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -378,7 +370,6 @@ public class sendEmail extends javax.swing.JPanel {
         });
 
         jLabel10.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 204, 204));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Order Quantity");
 
@@ -389,14 +380,12 @@ public class sendEmail extends javax.swing.JPanel {
         });
 
         jLabel9.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 204, 204));
         jLabel9.setText("Cart :");
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
         jLabel1.setBackground(new java.awt.Color(0, 204, 204));
         jLabel1.setFont(new java.awt.Font("Imprint MT Shadow", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 255, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("RAW MATERIALS FROM DIFFERENT SUPPLIERS");
 
@@ -488,7 +477,7 @@ public class sendEmail extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        String supplier = (String) cmbsupplier.getSelectedItem();
+        String supplier = (String) cmbsupplier1.getSelectedItem();
         refreshprod(supplier);
         System.out.println(supplier);
     }//GEN-LAST:event_jButton4ActionPerformed

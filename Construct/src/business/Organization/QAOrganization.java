@@ -5,7 +5,6 @@
 package business.Organization;
 
 import QA.ApplicationForm;
-import business.Role.AdManagerRole;
 import business.Role.Role;
 import java.util.ArrayList;
 import QA.ApplicationFormDirectory;
@@ -22,31 +21,30 @@ public class QAOrganization extends Organization{
         return AFormDirectory;
     }
 
-    public void setAFormDirectory(ApplicationFormDirectory AFormDirectory) {
-        this.AFormDirectory = AFormDirectory;
-    }
+   
     
     ApplicationFormDirectory AFormDirectory;
     
     
 
     public ApplicationFormDirectory getAfd() {
-        return afd;
+        return AFormDirectory;
     }
 
     public void setAfd(ApplicationFormDirectory afd) {
-        this.afd = afd;
+        this.AFormDirectory = afd;
     }
-    ApplicationFormDirectory afd;
+ 
     
     
-    
-
+   
     public QAOrganization() {
         super(Organization.Type.QA.getValue());
-        this.afd = new ApplicationFormDirectory();
+        this.AFormDirectory = new ApplicationFormDirectory();
         
     }
+    
+    
     
     @Override
     public ArrayList<Role> getSupportedRole() {
