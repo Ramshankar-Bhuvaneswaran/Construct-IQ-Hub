@@ -4,11 +4,17 @@
  */
 package UI.QA;
 
+import QA.ApplicationForm;
+import QA.ApplicationFormDirectory;
+import Supplier.Product;
 import business.Business;
 import business.Organization.Organization;
 import business.Organization.QAOrganization;
 import business.UserAccount.UserAccount;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,6 +36,8 @@ public class GovermentApplication extends javax.swing.JPanel {
         this.account=account;
         this.qaOrganization=qaOrganization;
         this.business=business;
+        
+        refreshpod();
         
         
         
@@ -76,13 +84,13 @@ public class GovermentApplication extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Site Name", "Product Description", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -144,7 +152,19 @@ public class GovermentApplication extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void approveRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveRequestBtnActionPerformed
-        //        if(request.getStatus().equalsIgnoreCase("Approved") || request.getStatus().equalsIgnoreCase("Declined")){
+        int row = jTable1.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null, "Please select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        ApplicationForm s = (ApplicationForm) jTable1.getValueAt(row, 0);
+        
+        s.setStatus("Approved");
+        refreshpod();
+        
+        
+        
+//        if(request.getStatus().equalsIgnoreCase("Approved") || request.getStatus().equalsIgnoreCase("Declined")){
             //            JOptionPane.showMessageDialog(null, "The funds have already been Approved/Declined");
             //            return;
             //        }
@@ -201,6 +221,19 @@ public class GovermentApplication extends javax.swing.JPanel {
 
     private void declineRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineRequestBtnActionPerformed
         // TODO add your handling code here:
+        
+        int row = jTable1.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null, "Please select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        ApplicationForm s = (ApplicationForm) jTable1.getValueAt(row, 0);
+        
+        s.setStatus("Rejected");
+        refreshpod();
+        
+        
+        
         //        if(request.getStatus().equalsIgnoreCase("Approved") || request.getStatus().equalsIgnoreCase("Declined")){
             //            JOptionPane.showMessageDialog(null, "The funds have already been Approved/Declined");
             //            return;
@@ -266,4 +299,21 @@ public class GovermentApplication extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void refreshpod() {
+         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        ArrayList<ApplicationForm> afd=qaOrganization.getAfd().getForms();
+           
+        Object[] row = new Object[3];
+        
+        for(ApplicationForm af:afd){
+            
+            row[0] = af;
+            row[1] = af.getSiteName();
+            row[2] = af.getSiteDetails();
+            
+            ((DefaultTableModel) jTable1.getModel()).addRow(row);
+    }
+}
 }

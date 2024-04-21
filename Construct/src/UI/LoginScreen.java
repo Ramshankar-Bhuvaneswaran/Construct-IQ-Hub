@@ -51,7 +51,7 @@ public class LoginScreen extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 51));
-        setPreferredSize(new java.awt.Dimension(806, 420));
+        setPreferredSize(new java.awt.Dimension(806, 800));
 
         lblUser.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -63,7 +63,6 @@ public class LoginScreen extends javax.swing.JPanel {
 
         btnLogin.setBackground(new java.awt.Color(0, 204, 204));
         btnLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(204, 255, 51));
         btnLogin.setText("Login");
         btnLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 204, 204), 4, true));
         btnLogin.setBorderPainted(false);
@@ -137,7 +136,7 @@ public class LoginScreen extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblPassword, lblUser, pwdField, txtUserName});
