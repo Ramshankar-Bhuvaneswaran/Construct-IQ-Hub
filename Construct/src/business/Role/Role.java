@@ -22,7 +22,7 @@ public abstract class Role {
         RentalCompany("RentalCompany"),
         AdCompany("AdCompany"),
         QualityAssuranceeng("QualityAssuranceeng"),
-        Govteng("Govt"),
+        GovtOfficer("GovtOfficer"),
         Supplierlogin("SupplierLogin"),
         Civilengineer("CivilEngineerLogin"),
         LabAssistant("Lab Assistant");

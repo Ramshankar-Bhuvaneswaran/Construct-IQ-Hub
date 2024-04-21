@@ -15,7 +15,23 @@ import javax.swing.ImageIcon;
 public class ProductCatalog {
 
     String type;
-    ArrayList<Product> products; //list of products initially empty
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
+        ArrayList<Product> products; //list of products initially empty
 
     public ProductCatalog(String n) {
         type = n;

@@ -12,63 +12,75 @@ import java.util.Properties;
 import Supplier.MasterOrderList;
 import Supplier.Order;
 import Supplier.Product;
+import Supplier.ProductCatalog;
 import Supplier.Supplier;
 import Supplier.SupplierDirectory;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import business.Business;
+import business.Organization.SupplierOrganization;
+import business.UserAccount.UserAccount;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
+
 /**
  *
  * @author saisr
  */
 public class sendEmail extends javax.swing.JPanel {
     
-    ArrayList<Product> products;
+    private ArrayList<Product> products;
     private JPanel userProcessContainer;
-    private SupplierDirectory supplierDirectory;
     Business bb;
+    UserAccount account;
+    SupplierOrganization supplierOrganization;
     
-
+    
     /**
      * Creates new form sendEmail
      */
-    public sendEmail(JPanel upc, Business b) {
+    public sendEmail(JPanel userProcessContainer,UserAccount account,SupplierOrganization sOrganization, Business business) {
         
         initComponents();
-        userProcessContainer = upc;
-        bb=b;
+        this.userProcessContainer = userProcessContainer;
+        this.account=account;
+        bb=business;
+        supplierOrganization=sOrganization;
 //         private JPanel userProcessContainer;
-        cmbsupplier.removeAllItems();
+        cmbsupplier1.removeAllItems();
+        SupplierDirectory supplierDirectory= supplierOrganization.getSuppliers();
          for(Supplier supplier : supplierDirectory.getSuppliers()) {
-            cmbsupplier.addItem(supplier.getSname());
+            cmbsupplier1.addItem(supplier.getSname());
+            this.products = new ArrayList<Product>();
          
         }
-
+        setupTableTextWrap(); 
+//
+//        
+//        String FromEmail ="saisrunith12@gmail.com";
+//        String ToEmail="saisrunith54@gmail.com";
+//        String FromEmailPassword ="Shivani123$";
+//        Properties properties= new Properties();
+//        properties.put("mail.smtp.auth", "true");
+//        properties.put("mail.smtp.startls.enable", "true");
+//        properties.put("mail.smtp.host", "smtp.gmail.com");
+//        properties.put("mail.smtp.port", "587");
         
-        String FromEmail ="saisrunith12@gmail.com";
-        String ToEmail="saisrunith54@gmail.com";
-        String FromEmailPassword ="Shivani123$";
-        Properties properties= new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.startls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
+//        Session session =Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
+//           protected PasswordAuthentication getPasswordAuthentication(){
+//               return new PasswordAuthentication(FromEmail, FromEmailPassword);
+//           } 
+//        });
         
-        Session session =Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
-           protected PasswordAuthentication getPasswordAuthentication(){
-               return new PasswordAuthentication(FromEmail, FromEmailPassword);
-           } 
-        });
-        
-        try{
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(FromEmail));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(ToEmail));
-            Transport.send(message);
-        }catch(Exception ex){
-            System.out.println(""+ex);
-        }
-        
+//        try{
+//            MimeMessage message = new MimeMessage(session);
+//            message.setFrom(new InternetAddress(FromEmail));
+//            message.addRecipient(Message.RecipientType.TO, new InternetAddress(ToEmail));
+//            Transport.send(message);
+//        }catch(Exception ex){
+//            System.out.println(""+ex);
+//        }
+//        
         
         
         
@@ -150,7 +162,6 @@ public class sendEmail extends javax.swing.JPanel {
         jTable2 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         cmbsupplier = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableJ = new javax.swing.JTable();
@@ -167,6 +178,8 @@ public class sendEmail extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         txtActualPrice1 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         jLabel2.setText("Supplier");
 
@@ -264,14 +277,10 @@ public class sendEmail extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(51, 153, 255));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 0, 51));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("RAW MATERIALS FROM DIFFERENT SUPPLIERS");
+        setBackground(new java.awt.Color(204, 255, 51));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 204, 204));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Supplier :");
 
@@ -296,10 +305,13 @@ public class sendEmail extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tableJ);
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 204, 204));
         jLabel8.setText("Catalog");
 
+        jButton6.setBackground(new java.awt.Color(0, 204, 204));
+        jButton6.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 12)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(204, 255, 51));
         jButton6.setText("Select");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -320,6 +332,9 @@ public class sendEmail extends javax.swing.JPanel {
         ));
         jScrollPane4.setViewportView(jTableCart);
 
+        jButton8.setBackground(new java.awt.Color(0, 204, 204));
+        jButton8.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 12)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(204, 255, 51));
         jButton8.setText("<<Back");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,6 +342,9 @@ public class sendEmail extends javax.swing.JPanel {
             }
         });
 
+        cmbsupplier1.setBackground(new java.awt.Color(0, 204, 204));
+        cmbsupplier1.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 12)); // NOI18N
+        cmbsupplier1.setForeground(new java.awt.Color(204, 255, 51));
         cmbsupplier1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbsupplier1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -334,10 +352,14 @@ public class sendEmail extends javax.swing.JPanel {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 204, 204));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Actual Price");
 
+        btnAdd.setBackground(new java.awt.Color(0, 204, 204));
+        btnAdd.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 12)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(204, 255, 51));
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -345,7 +367,9 @@ public class sendEmail extends javax.swing.JPanel {
             }
         });
 
-        btnBook.setBackground(new java.awt.Color(204, 255, 204));
+        btnBook.setBackground(new java.awt.Color(0, 204, 204));
+        btnBook.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 12)); // NOI18N
+        btnBook.setForeground(new java.awt.Color(204, 255, 51));
         btnBook.setText("Book");
         btnBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -353,7 +377,8 @@ public class sendEmail extends javax.swing.JPanel {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 204, 204));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Order Quantity");
 
@@ -363,28 +388,38 @@ public class sendEmail extends javax.swing.JPanel {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 204, 204));
         jLabel9.setText("Cart :");
+
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+
+        jLabel1.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel1.setFont(new java.awt.Font("Imprint MT Shadow", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 255, 51));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("RAW MATERIALS FROM DIFFERENT SUPPLIERS");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(jButton8)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jButton8)
-                        .addGap(187, 187, 187)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(cmbsupplier1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton6))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(620, 620, 620)
@@ -396,36 +431,34 @@ public class sendEmail extends javax.swing.JPanel {
                             .addComponent(txtActualPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtActualPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBook, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 967, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(772, 772, 772)
-                        .addComponent(btnBook, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 967, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbsupplier1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(jButton6)))
+                .addGap(70, 88, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton8)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6)
+                    .addComponent(cmbsupplier1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbsupplier1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6))))
-                .addGap(12, 12, 12)
+                    .addComponent(jButton8))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -443,8 +476,9 @@ public class sendEmail extends javax.swing.JPanel {
                         .addComponent(txtActualPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnAdd)))
-                .addGap(3, 3, 3)
-                .addComponent(btnBook))
+                .addGap(2, 2, 2)
+                .addComponent(btnBook)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -655,14 +689,15 @@ public class sendEmail extends javax.swing.JPanel {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        String supplier = (String) cmbsupplier.getSelectedItem();
-     refreshprod(supplier);
+        String supplier = (String) cmbsupplier1.getSelectedItem();
+        refreshprod(supplier);
+        System.out.println(supplier);
         System.out.println(supplier);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-//        userProcessContainer.remove(this);
-//        ((java.awt.CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
+        userProcessContainer.remove(this);
+        ((java.awt.CardLayout) userProcessContainer.getLayout()).next(userProcessContainer);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void cmbsupplier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbsupplier1ActionPerformed
@@ -682,30 +717,48 @@ public class sendEmail extends javax.swing.JPanel {
         int actp= Integer.parseInt(txtActualPrice.getText());
         int quant= Integer.parseInt(txtActualPrice1.getText());
 
-        int row = tblCatalog.getSelectedRow();
+        int row = tableJ.getSelectedRow();
         if(row<0){
             JOptionPane.showMessageDialog(null, "Please select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        Product s = (Product) tblCatalog.getValueAt(row, 0);
-        
+        Product s = (Product) tableJ.getValueAt(row, 0);
+        System.out.println(s.getName());
+        System.out.println();
+        s.setAvailability(quant);
+        s.setPrice(actp);
         products.add(s);
+        refreshorder();
+        
 //
 //        MasterOrderList mol =  bb.getMasterorderlist();
 //        Order order1 = mol.newOrder();
 //        order1.newOrderItem(s,actp,quant);
             
-        refreshorder(actp,quant);
+//        refreshorder(actp,quant);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
         // TODO add your handling code here:
-//        MasterOrderList mol =  bb.getMasterorderlist();
-//        Order order1 = mol.newOrder();
-//         int quant= Integer.parseInt(txtActualPrice1.getText());
-//        for(Product p :products){
-//            order1.newOrderItem(p,p.getPrice(),quant);
-//        }
+       MasterOrderList mol= supplierOrganization.getMasterorderlist();
+       ProductCatalog pC=supplierOrganization.getPc();
+        Order order1 = mol.newOrder();
+        int quant= Integer.parseInt(txtActualPrice1.getText());
+        for(Product p :products){
+            for(Product p2: pC.getProducts()){
+                if(p2.getName().equals(p.getName())){
+                    if(p.getAvailability()<p2.getAvailability()){
+                         order1.newOrderItem(p,p.getPrice(),quant);
+                         p2.setAvailability(p2.getAvailability()-p.getAvailability());
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Quantity unavailable");
+                    }
+                    
+                }
+                
+            }
+        }
 //        
 //        
 
@@ -740,6 +793,7 @@ public class sendEmail extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -754,25 +808,36 @@ public class sendEmail extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void refreshprod(String sp) {
-        int rc = tblCatalog.getRowCount();
-        int i;
-        for (i = rc - 1; i >= 0; i--) {
-            ((DefaultTableModel) tableJ.getModel()).removeRow(i);
-        }
+        DefaultTableModel model = (DefaultTableModel) tableJ.getModel();
+        model.setRowCount(0);
+//        int rc = tblCatalog.getRowCount();
+//        int i;
+//        for (i = rc - 1; i >= 0; i--) {
+//            ((DefaultTableModel) tableJ.getModel()).removeRow(i);
+//        }
+
+
         
-        
+        SupplierDirectory supplierDirectory= supplierOrganization.getSuppliers();
+        System.out.println(supplierDirectory);
         for(Supplier supplierp : supplierDirectory.getSuppliers()) {
             if(sp.equals(supplierp.getSname())){
+                System.out.println(sp);
                 for(Product p: supplierp.getPc().getProductList())  {
-     
-     
-      Object[] row = new Object[4];
+                    ImageIcon icon = p.getXyz();
+                if (icon != null) {
+            // Scale the icon if necessary
+                Image image = icon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+                icon = new ImageIcon(image);
+        }
+          
+            Object[] row = new Object[5];
             row[0] = p;
             row[1] = p.getPrice();
             row[2] = p.getProductDescription();
+            row[3]=icon;
+            row[4]=p.getAvailability();
             
-              
-//           row[4]=p.;
 
             ((DefaultTableModel) tableJ.getModel()).addRow(row);     
      }                     
@@ -780,23 +845,64 @@ public class sendEmail extends javax.swing.JPanel {
         }
             }
 
-    private void refreshorder(int x, int y) {
+    private void refreshorder() {
         
-         int rc = jTableCart.getRowCount();
-        int i;
-        for (i = rc - 1; i >= 0; i--) {
-            ((DefaultTableModel) jTableCart.getModel()).removeRow(i);
-        }
-        Object[] row = new Object[4];
+        DefaultTableModel model = (DefaultTableModel) jTableCart.getModel();
+        model.setRowCount(0);
+           
+//        int rc = jTableCart.getRowCount();
+//        int i;
+//        for (i = rc - 1; i >= 0; i--) {
+//            ((DefaultTableModel) jTableCart.getModel()).removeRow(i);
+//        }
+        Object[] row = new Object[3];
         for(Product p1: products){
             row[0] = p1;
-            row[1] = p1.getPrice();
-            row[2] = p1.getName();
+            row[1] = p1.getAvailability();
+            row[2] = (p1.getAvailability())*(p1.getPrice());
             
-            
-            ((DefaultTableModel) jTable2.getModel()).addRow(row);
+            ((DefaultTableModel) jTableCart.getModel()).addRow(row);
             
         }
         
     }
+    private void setupTableTextWrap() {
+        tableJ.setDefaultRenderer(Object.class, new TableCellRenderer() {
+            private final JTextArea textArea = new JTextArea();
+ 
+            {
+                textArea.setLineWrap(true);
+                textArea.setWrapStyleWord(true);
+                textArea.setOpaque(true);
+            }
+ 
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                if (value instanceof ImageIcon) {
+                    return new JLabel((ImageIcon) value);
+                } else {
+                    textArea.setText(value != null ? value.toString() : "");
+                    textArea.setBackground(isSelected ? table.getSelectionBackground() : table.getBackground());
+                    textArea.setForeground(isSelected ? table.getSelectionForeground() : table.getForeground());
+                    return textArea;
+                    
+                }
+            }
+        });
+        tableJ.setRowHeight(60);
+    }
+    public class ImageRenderer extends DefaultTableCellRenderer {
+ 
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            if (value instanceof ImageIcon) {
+                JLabel label = new JLabel();
+                label.setIcon((ImageIcon) value);
+                return label;
+            }
+            return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        }
+    }
+    
+    
 }

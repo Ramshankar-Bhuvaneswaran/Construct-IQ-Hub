@@ -12,18 +12,30 @@ import java.util.Iterator;
  *
  * @author Ram
  */
-public class BookingList implements Iterable<Booking>{
+public class BookingList{
     ArrayList<Booking> bookings;
 
-    public BookingList() {
-//    this.c=c;
+    public ArrayList<Booking> getBookings() {
+    
+        return bookings;
+    }
+    int bookingid;
+    
+    public BookingList() 
+    {
     bookings=new ArrayList<>();
     }
 
      // Method to create a booking
-    
-    @Override
-    public Iterator<Booking> iterator(){
-    return bookings.iterator();
+    public Booking newbook(RentalCompanyList list,Date s,Date e)
+    {
+        Booking b= new Booking(list,s,e);
+        bookings.add(b);
+        return b;
     }
+    
+//    @Override
+//    public Iterator<Booking> iterator(){
+//    return bookings.iterator();
+//    }
 }
