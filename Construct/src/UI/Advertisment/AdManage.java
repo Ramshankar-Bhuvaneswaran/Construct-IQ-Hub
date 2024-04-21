@@ -43,7 +43,7 @@ public class AdManage extends javax.swing.JPanel {
                     for(AdvertisingOptions adop: media.getAdOptions(md)){
                         String medium= adop.getPlatformType();
         jComboBox1.addItem(medium);
-        }}
+        }}  
     }
     public void refresh()
     {
@@ -57,24 +57,29 @@ public class AdManage extends javax.swing.JPanel {
 
         for(MediaPartner md:media.getPartnerAdOptions().keySet())
         {
-//                {if (md.getPartnerName().equals(cname)){
-                    for(AdvertisingOptions adop: media.getAdOptions(md)){
-      Object[] row = new Object[5];
+           {
+            if (md.getPartnerName().equals(usac.getUsername()))
+            {
+            for(AdvertisingOptions adop: media.getAdOptions(md))
+            {
+            Object[] row = new Object[5];
             row[0] = 1;
             row[1] =adop.getOptionID();
 //            row[2] = adop.getPlatformType();
 //            
-           row[2] = adop.getTargetAudience() ; 
-           row[3]=adop.getCostPerUnit();
+            row[2] = adop.getTargetAudience() ; 
+            row[3]=adop.getCostPerUnit();
 //
-            ((DefaultTableModel) jTable1.getModel()).addRow(row);}
-        }       
-    
-    
+            ((DefaultTableModel) jTable1.getModel()).addRow(row);
+            }
+            }
+        }    
+        }   
+
     
     }
-    public void refresh2(){
-    
+    public void refresh2()
+    {    
       int rc = jTable2.getRowCount();
         int i;
         for (i = rc - 1; i >= 0; i--) {
@@ -273,7 +278,15 @@ public class AdManage extends javax.swing.JPanel {
         }
         AdvertisingOptions acc= (AdvertisingOptions) jTable1.getValueAt(row, 0);
         SelectAdOptionList selectlist = advert.getSelectedad();
-        selectlist.addAdOption(acc);
+        MediaandAdoption media=advert.getMediaadlist();
+        for(MediaPartner md:media.getPartnerAdOptions().keySet())
+        {
+            if (md.getPartnerName().equals(usac.getUsername())){
+                selectlist.addAdOption(md,acc);
+                
+            } 
+        }
+        
          JOptionPane.showMessageDialog(this, "Added to advertising plan", "Info", JOptionPane.INFORMATION_MESSAGE);           
          refresh2();
         
@@ -289,7 +302,14 @@ public class AdManage extends javax.swing.JPanel {
         AdvertisingOptions acc= (AdvertisingOptions) jTable2.getValueAt(selectedRowIndex, 0);
         
         SelectAdOptionList selectlist = advert.getSelectedad();
-        selectlist.removeAdOption(acc);
+         MediaandAdoption media=advert.getMediaadlist();
+        for(MediaPartner md:media.getPartnerAdOptions().keySet())
+        {
+            if (md.getPartnerName().equals(usac.getUsername())){
+                selectlist.removeAdOption(md,acc);
+                
+            } 
+        }
         refresh2();}}
         // TODO add your handling code here:
     }//GEN-LAST:event_DeleteBtnActionPerformed
