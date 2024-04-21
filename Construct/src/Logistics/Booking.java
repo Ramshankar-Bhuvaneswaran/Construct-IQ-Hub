@@ -17,12 +17,12 @@ public class Booking {
     private Date startDate;
     private Date endDate;
 
-    public Booking( RentalCompanyList list) {
+    public Booking( RentalCompanyList list,Date s,Date e) {
         this.list = list;
-        this.startDate = new Date(); // Set the start date to today
-        this.endDate = null; // End date is initially not set
+        this.startDate = s;
+        this.endDate =e; 
     }
-
+    
    
 
     public Date getStartDate() {

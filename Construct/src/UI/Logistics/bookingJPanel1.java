@@ -35,7 +35,7 @@ public class bookingJPanel1 extends javax.swing.JPanel {
         this.usac=usac;
         this.log=log;
         paan=pan;
-        refreshprod(1, 0);
+//        refreshprod(1, 0);
         
     }
     
@@ -51,8 +51,8 @@ public class bookingJPanel1 extends javax.swing.JPanel {
         RentalCompanyList blist= log.getRentalvehilist();
  
         for(RentalCompany a:blist.getVehiclesByCompany().keySet()) {
-           
-            for(Vehicle v:blist.getVehiclesByCompany().get(a))  {
+                       for(Vehicle v:blist.getVehiclesByCompany().get(a))  {
+            if(v!=null){    
                 if(v.getCapacity()>vol)
             {
             Object[] row = new Object[5];
@@ -62,7 +62,7 @@ public class bookingJPanel1 extends javax.swing.JPanel {
             row[3] = v.getPricePerHour()*days ;    
 //
             ((DefaultTableModel) jTable1.getModel()).addRow(row);
-                }
+                }}
                 }
         }
      }     

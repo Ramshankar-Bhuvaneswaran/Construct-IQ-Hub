@@ -69,8 +69,8 @@ public class ConfigureABusiness {
         account.setEmployee(employee);
         
         UserAccount account2 = new UserAccount();
-        account2.setUsername("rentcompany");
-        account2.setPassword("rentpass");
+        account2.setUsername("ola");
+        account2.setPassword("ola");
         account2.setRole(new RentalCompanyRole()); // Custom role for rent company
         account2.setEmployee(employee1);
 
@@ -113,8 +113,13 @@ public class ConfigureABusiness {
         adorg.getUserAccountDirectory().getUserAccountList().add(account4);
         adorg.getUserAccountDirectory().getUserAccountList().add(account5);
         adorg.getUserAccountDirectory().getUserAccountList().add(account6);
-
+        for(UserAccount usa:logorg.getUserAccountDirectory().getUserAccountList()){
+        if(usa.getRole() instanceof RentalCompanyRole){
+             RentalCompanyList blist= logorg.getRentalvehilist();
         
+         RentalCompany rentalCompany = new RentalCompany(usa.getUsername());
+         blist.addVehicle(rentalCompany, null);
+        }}
         Vehicle vehicle = new Vehicle("VH101", "Truck", 2.5, 75.0);
         
         RentalCompany rentalCompany = new RentalCompany("Best Rentals");
@@ -125,7 +130,7 @@ public class ConfigureABusiness {
 
         // Display available vehicles before booking
         System.out.println("Available vehicles before booking:");
-        r.displayAllVehicles();
+//        r.displayAllVehicles();
         // Step 3: Book the vehicle for a specific order
 //        BookingList b=logorg.getRentalvehilist();
 //        rentalCompany.create("BK001", "ORD001", vehicle);

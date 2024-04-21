@@ -31,12 +31,10 @@ public class AddOption extends javax.swing.JPanel {
     LogisticsOrganization log;
     UserAccount usac;
     Business aa;
-    RentalCompany r;
-    public AddOption(JPanel pan,LogisticsOrganization log,UserAccount usac,RentalCompany r) {
+    public AddOption(JPanel pan,LogisticsOrganization log,UserAccount usac) {
         this.p=pan;
         this.usac=usac;
         this.log=log;
-        this.r=r;
         initComponents();
     }
 
@@ -188,13 +186,13 @@ public class AddOption extends javax.swing.JPanel {
         for (RentalCompany re: rentlistv.getVehiclesByCompany().keySet())
         {   
 
-            if(re.equals(r))
+            if(re.getCompanyName().equals(usac.getUsername()))
             { 
                 Vehicle v= new Vehicle(vehiclename, type, priceper, capacity);
                 rentlistv.addVehicle(re, v);
             }  
             
-        RentalCompany1 cwjp = new RentalCompany1(p,  usac,log,r);
+        RentalCompany1 cwjp = new RentalCompany1(p,  usac,log);
 //      p.removeAll();
         p.add("Ad", cwjp);
         ((java.awt.CardLayout) p.getLayout()).next(p); 

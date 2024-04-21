@@ -5,7 +5,7 @@
 package business.Role;
 
 
-import UI.Logistics.WelcomeRental;
+import UI.Logistics.RentalCompany1;
 import business.Business;
 import business.Organization.LogisticsOrganization;
 import business.Organization.Organization;
@@ -25,7 +25,7 @@ public class RentalCompanyRole extends Role {
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Business business) {
         this.type = RoleType.RentalCompany;
-        return new WelcomeRental(userProcessContainer, account, (LogisticsOrganization) organization, business);
+        return new RentalCompany1(userProcessContainer, account, (LogisticsOrganization) organization);
     }
 
 }
