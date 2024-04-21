@@ -13,28 +13,39 @@ import javax.swing.ImageIcon;
  */
 public class ApplicationForm {
     
-    String siteName;
-    String siteDetails;
-    File xyz;
-    ImageIcon Ii;
+    private String siteName;
+    private String siteDetails;
+    private File xyz;
+    private ImageIcon Ii;
+    private String Status="Pending";
+    
+    
 
-    public boolean isStatus() {
+    public String isStatus() {
         return Status;
     }
 
-    public void setStatus(boolean Status) {
+    public void setStatus(String Status) {
         this.Status = Status;
     }
-    boolean Status = false;
     
-    public ApplicationForm(String siteName,String siteDetails,File xyz,ImageIcon Ii){
+    
+    public ApplicationForm(String siteName,String siteDetails,ImageIcon Ii){
         
         this.siteName = siteName;
         this.siteDetails = siteDetails;
-        this.xyz=xyz;
         this.Ii=Ii;
+    
         
         
+    }
+
+    public ImageIcon getIi() {
+        return Ii;
+    }
+
+    public void setIi(ImageIcon Ii) {
+        this.Ii = Ii;
     }
 
     public String getSiteName() {
