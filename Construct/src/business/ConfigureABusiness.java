@@ -25,6 +25,7 @@ import business.Role.AdCompanyRole;
 import business.Role.AdManagerRole;
 import business.Role.AdminRole;
 import business.Role.CivilEngineer;
+import business.Role.GovtOfficerRole;
 import business.Role.LogisticsManagerRole;
 import business.Role.RentalCompanyRole;
 import business.UserAccount.UserAccount;
@@ -72,6 +73,17 @@ public class ConfigureABusiness {
         Employee employee5 = new Employee();
         employee5.setName("AdCompany2");
         
+        Employee employee6 = new Employee();
+        employee5.setName("CivilEngineer");
+        
+        Employee employee7=new Employee();
+        employee7.setName("GovtOfficer");
+        
+        Employee employee8=new Employee();
+        employee8.setName("QualityAssuranceeng");
+        
+        Employee employee9=new Employee();
+        employee9.setName("Supplier");
         
         UserAccount account = new UserAccount();
         account.setUsername("admin");
@@ -83,7 +95,7 @@ public class ConfigureABusiness {
         account1.setUsername("civil");
         account1.setPassword("civil");
         account1.setRole(new CivilEngineer());
-        account1.setEmployee(employee);
+        account1.setEmployee(employee6);
         UserAccount account2 = new UserAccount();
 account2.setUsername("rentcompany");
 account2.setPassword("rentpass");
@@ -113,6 +125,18 @@ account6.setUsername("adcompany2");
 account6.setPassword("ad2pass");
 account6.setRole(new AdCompanyRole()); // Assuming the same role as AdCompany
 account6.setEmployee(employee5);
+
+ UserAccount account7 = new UserAccount();
+        account1.setUsername("govtofficer");
+        account1.setPassword("govtofficer");
+        account1.setRole(new GovtOfficerRole());
+        account1.setEmployee(employee7);
+        
+        UserAccount account8 = new UserAccount();
+        account1.setUsername("govtofficer");
+        account1.setPassword("govtofficer");
+        account1.setRole(new CivilEngineer());
+        account1.setEmployee(employee8);
         
         adminOrganization.getEmployeeDirectory().getEmployeeList().add(employee);
         adminOrganization.getUserAccountDirectory().getUserAccountList().add(account);
