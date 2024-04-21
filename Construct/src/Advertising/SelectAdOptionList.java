@@ -5,7 +5,9 @@
 package Advertising;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  *
@@ -13,39 +15,44 @@ import java.util.Iterator;
  */
 public class SelectAdOptionList implements Iterable<AdvertisingOptions> {
 //      Construct c;
-    ArrayList<AdvertisingOptions> adlist;
-
-    public ArrayList<AdvertisingOptions> getAdlist() {
-        return adlist;
+     public HashMap<MediaPartner, List<AdvertisingOptions>> getPartnerAdOptions() {
+        return SelectedAdOptions;
     }
+      private HashMap<MediaPartner, List<AdvertisingOptions>> SelectedAdOptions;
 
-    public void setAdlist(ArrayList<AdvertisingOptions> adlist) {
-        this.adlist = adlist;
-    }
     public SelectAdOptionList() {
 //     this.c=C;
-     adlist= new ArrayList<>();
+     this.SelectedAdOptions= new HashMap<>();
     }
      // Method to add an AdvertisingOptions object to the adlist
-    public void addAdOption(AdvertisingOptions adOption) {
-        adlist.add(adOption);
+     
+    public void addAdOption(MediaPartner partner, AdvertisingOptions adOption) {
+        // Check if the media partner already exists in the map
+        List<AdvertisingOptions> options = SelectedAdOptions.get(partner);
+        if (options == null) {
+            options = new ArrayList<>();
+            SelectedAdOptions.put(partner, options);
+        }
+        options.add(adOption);
     }
-
-    // Method to remove an AdvertisingOptions object by index
-    public void removeAdOption(int index) {
-        if (index >= 0 && index < adlist.size()) {
-            adlist.remove(index);
-        } else {
-            System.out.println("Invalid index: " + index);
+   public void removeAdOption(MediaPartner partner, AdvertisingOptions adOption) {
+        List<AdvertisingOptions> options = SelectedAdOptions.get(partner);
+        if (options != null) {
+            options.remove(adOption);
+            // Optionally, clean up the map entry if the list is now empty
+            if (options.isEmpty()) {
+                SelectedAdOptions.remove(partner);
+            }
         }
     }
-
     // Method to remove an AdvertisingOptions object by reference
-    public boolean removeAdOption(AdvertisingOptions adOption) {
-        return adlist.remove(adOption);
-    }
-      @Override
+   
+         @Override
     public Iterator<AdvertisingOptions> iterator() {
-        return adlist.iterator();
+        List<AdvertisingOptions> allAds = new ArrayList<>();
+        for (List<AdvertisingOptions> options : SelectedAdOptions.values()) {
+            allAds.addAll(options);
+        }
+        return allAds.iterator();
     }
 }

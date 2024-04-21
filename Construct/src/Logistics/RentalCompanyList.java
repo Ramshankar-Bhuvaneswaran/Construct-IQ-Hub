@@ -54,6 +54,16 @@ public class RentalCompanyList {
     public HashMap<RentalCompany, List<Vehicle>> getVehiclesByCompany() {
         return vehiclesByCompany;
     }
+    public void removeVehicle(RentalCompany company, Vehicle vehicle) {
+        List<Vehicle> vehicles = vehiclesByCompany.get(company);
+        if (vehicles != null) {
+            vehicles.remove(vehicle);
+            // Optionally, remove the company entry if no vehicles are left
+            if (vehicles.isEmpty()) {
+                vehiclesByCompany.remove(company);
+            }
+        }
+    }
     
 }
 

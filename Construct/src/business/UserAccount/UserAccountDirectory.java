@@ -4,7 +4,10 @@
  */
 package business.UserAccount;
 
+import Logistics.RentalCompany;
+import Logistics.RentalCompanyList;
 import business.Employee.Employee;
+import business.Role.RentalCompanyRole;
 import business.Role.Role;
 import java.util.ArrayList;
 

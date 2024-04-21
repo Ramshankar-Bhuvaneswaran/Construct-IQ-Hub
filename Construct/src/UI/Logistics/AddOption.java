@@ -30,6 +30,7 @@ public class AddOption extends javax.swing.JPanel {
     JPanel p;
     LogisticsOrganization log;
     UserAccount usac;
+    Business aa;
     public AddOption(JPanel pan,LogisticsOrganization log,UserAccount usac) {
         this.p=pan;
         this.usac=usac;
@@ -128,7 +129,7 @@ public class AddOption extends javax.swing.JPanel {
                         .addComponent(jprice, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,20 +182,23 @@ public class AddOption extends javax.swing.JPanel {
         Double capacity= Double.parseDouble(jcapa.getText());
         
         RentalCompanyList rentlistv=log.getRentalvehilist();
-        for (RentalCompany r: rentlistv.getVehiclesByCompany().keySet())
-        {
-            for(Vehicle v: rentlistv.getVehicles(r))
-            {
-//                    List<AdvertisingOptions> ad = media.getAdOptions(md);
-                    AdvertisingOptions adoption= new AdvertisingOptions(planname
-                            , costper, medium, audience);
-                    media.addAdOption(md, adoption);
-                }}
-       
-        
-        
-        
-        
+                   
+        for (RentalCompany re: rentlistv.getVehiclesByCompany().keySet())
+        {   
+
+            if(re.getCompanyName().equals(usac.getUsername()))
+            { 
+                Vehicle v= new Vehicle(vehiclename, type, priceper, capacity);
+                rentlistv.addVehicle(re, v);
+            }  
+            
+        RentalCompany1 cwjp = new RentalCompany1(p,  usac,log);
+//      p.removeAll();
+        p.add("Ad", cwjp);
+        ((java.awt.CardLayout) p.getLayout()).next(p); 
+        }
+            
+
     }//GEN-LAST:event_AddBtnActionPerformed
 
 

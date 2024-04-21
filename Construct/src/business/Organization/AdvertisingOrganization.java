@@ -4,7 +4,6 @@
  */
 package business.Organization;
 
-import Advertising.AdCampaignList;
 import Advertising.MediaandAdoption;
 import Advertising.SelectAdOptionList;
 import business.Role.AdCompanyRole;
@@ -18,14 +17,12 @@ import java.util.ArrayList;
  * @author raunak
  */
 public class AdvertisingOrganization extends Organization{
-     AdCampaignList adcampaignlist;
     MediaandAdoption mediaadlist;
     SelectAdOptionList selectedad;
    
     public AdvertisingOrganization() {
         super(Organization.Type.Advertising.getValue());
         
-        adcampaignlist= new AdCampaignList();
         mediaadlist= new MediaandAdoption();
         selectedad= new SelectAdOptionList();
         
@@ -39,13 +36,7 @@ public class AdvertisingOrganization extends Organization{
         return roles;
     }
 
-    public AdCampaignList getAdcampaignlist() {
-        return adcampaignlist;
-    }
-
-    public void setAdcampaignlist(AdCampaignList adcampaignlist) {
-        this.adcampaignlist = adcampaignlist;
-    }
+    
 
     public MediaandAdoption getMediaadlist() {
         return mediaadlist;

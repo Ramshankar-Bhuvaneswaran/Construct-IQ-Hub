@@ -42,7 +42,7 @@
                   <Component id="AddBtn" alignment="1" min="-2" pref="99" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="269" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="177" max="32767" attributes="0"/>
+              <EmptySpace pref="182" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
