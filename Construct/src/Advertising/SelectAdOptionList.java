@@ -15,44 +15,36 @@ import java.util.List;
  */
 public class SelectAdOptionList implements Iterable<AdvertisingOptions> {
 //      Construct c;
-     public HashMap<MediaPartner, List<AdvertisingOptions>> getPartnerAdOptions() {
+     public List<AdvertisingOptions> getPartnerAdOptions() {
         return SelectedAdOptions;
     }
-      private HashMap<MediaPartner, List<AdvertisingOptions>> SelectedAdOptions;
+      private ArrayList<AdvertisingOptions> SelectedAdOptions;
 
     public SelectAdOptionList() {
 //     this.c=C;
-     this.SelectedAdOptions= new HashMap<>();
+     this.SelectedAdOptions= new ArrayList<>();
     }
      // Method to add an AdvertisingOptions object to the adlist
      
-    public void addAdOption(MediaPartner partner, AdvertisingOptions adOption) {
-        // Check if the media partner already exists in the map
-        List<AdvertisingOptions> options = SelectedAdOptions.get(partner);
-        if (options == null) {
-            options = new ArrayList<>();
-            SelectedAdOptions.put(partner, options);
-        }
-        options.add(adOption);
+     // Method to add an AdvertisingOptions object to the adlist
+    public void addAdOption(AdvertisingOptions adOption) {
+        SelectedAdOptions.add(adOption);
     }
-   public void removeAdOption(MediaPartner partner, AdvertisingOptions adOption) {
-        List<AdvertisingOptions> options = SelectedAdOptions.get(partner);
-        if (options != null) {
-            options.remove(adOption);
-            // Optionally, clean up the map entry if the list is now empty
-            if (options.isEmpty()) {
-                SelectedAdOptions.remove(partner);
-            }
-        }
-    }
+
     // Method to remove an AdvertisingOptions object by reference
-   
-         @Override
-    public Iterator<AdvertisingOptions> iterator() {
-        List<AdvertisingOptions> allAds = new ArrayList<>();
-        for (List<AdvertisingOptions> options : SelectedAdOptions.values()) {
-            allAds.addAll(options);
-        }
-        return allAds.iterator();
+    public void removeAdOption(AdvertisingOptions adOption) {
+        SelectedAdOptions.remove(adOption);
     }
+
+    // Method to get the list of all advertising options
+    public List<AdvertisingOptions> getSelectedAdOptions() {
+        return SelectedAdOptions;
+    }
+
+    // Implementing the Iterable interface to allow for each loops over AdvertisingOptions
+    @Override
+    public Iterator<AdvertisingOptions> iterator() {
+        return SelectedAdOptions.iterator();
+    }
+
 }
