@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package UI.Supplier;
-import javax.mail.*;
-import javax.mail.internet.*;
+//import javax.mail.*;
+//import javax.mail.internet.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -477,7 +477,7 @@ public class sendEmail extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        String supplier = (String) cmbsupplier.getSelectedItem();
+        String supplier = (String) cmbsupplier1.getSelectedItem();
         refreshprod(supplier);
         System.out.println(supplier);
     }//GEN-LAST:event_jButton4ActionPerformed

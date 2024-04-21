@@ -15,25 +15,25 @@ import javax.swing.ImageIcon;
  * @author saisr
  */
 public class ApplicationFormDirectory {
+    
+     ArrayList<ApplicationForm> Forms;
+     
+     
+      public ApplicationFormDirectory(){
+        Forms = new ArrayList();
+    }
 
     public ArrayList<ApplicationForm> getForms() {
         return Forms;
     }
 
-    public void setForms(ArrayList<ApplicationForm> Forms) {
-        this.Forms = Forms;
-    }
+   
     
-    
-    ArrayList<ApplicationForm> Forms;
-    
-    public ApplicationForm newApplicationForm(String siteName,String siteDetails,File file,ImageIcon xyz) {
-        ApplicationForm af = new ApplicationForm(siteName,siteDetails,file,xyz);
+    public ApplicationForm newApplicationForm(String siteName,String siteDetails,ImageIcon xyz) {
+        ApplicationForm af = new ApplicationForm(siteName,siteDetails,xyz);
         Forms.add(af);
         return af;
     }
     
-    public ApplicationFormDirectory(){
-        Forms = new ArrayList();
-    }
+   
 }

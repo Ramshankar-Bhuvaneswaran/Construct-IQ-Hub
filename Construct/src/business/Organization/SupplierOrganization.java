@@ -5,7 +5,6 @@
 package business.Organization;
 
 import Supplier.MasterOrderList;
-import business.Role.AdManagerRole;
 import business.Role.Role;
 import java.util.ArrayList;
 import Supplier.ProductCatalog;
