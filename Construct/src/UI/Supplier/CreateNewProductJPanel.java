@@ -69,8 +69,7 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         txtPrice.setForeground(new java.awt.Color(102, 0, 51));
 
         btnAdd.setBackground(new java.awt.Color(0, 204, 204));
-        btnAdd.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 12)); // NOI18N
-        btnAdd.setForeground(new java.awt.Color(204, 255, 51));
+        btnAdd.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 14)); // NOI18N
         btnAdd.setText("Add Product");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,8 +78,7 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         });
 
         btnBack.setBackground(new java.awt.Color(0, 204, 204));
-        btnBack.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 12)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(204, 255, 51));
+        btnBack.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 14)); // NOI18N
         btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,8 +100,7 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         txtAvailability.setForeground(new java.awt.Color(102, 0, 51));
 
         btnAttach.setBackground(new java.awt.Color(0, 204, 204));
-        btnAttach.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 12)); // NOI18N
-        btnAttach.setForeground(new java.awt.Color(204, 255, 51));
+        btnAttach.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 14)); // NOI18N
         btnAttach.setText("Attach");
         btnAttach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,7 +125,7 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
-        jLabel1.setFont(new java.awt.Font("Imprint MT Shadow", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Imprint MT Shadow", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Create New Product");
@@ -165,12 +162,11 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtAvailability, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnAttach)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAttach)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
@@ -209,7 +205,7 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
                         .addGap(58, 58, 58)
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(imgLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
