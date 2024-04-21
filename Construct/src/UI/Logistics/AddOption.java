@@ -30,6 +30,7 @@ public class AddOption extends javax.swing.JPanel {
     JPanel p;
     LogisticsOrganization log;
     UserAccount usac;
+    Business aa;
     public AddOption(JPanel pan,LogisticsOrganization log,UserAccount usac) {
         this.p=pan;
         this.usac=usac;
@@ -181,16 +182,22 @@ public class AddOption extends javax.swing.JPanel {
         Double capacity= Double.parseDouble(jcapa.getText());
         
         RentalCompanyList rentlistv=log.getRentalvehilist();
-                String a=(usac.getEmployee() != null) ? usac.getEmployee().getName() : usac.getUsername();
-
-        for (RentalCompany r: rentlistv.getVehiclesByCompany().keySet())
+                   
+        for (RentalCompany re: rentlistv.getVehiclesByCompany().keySet())
         {   
-            if(r.getCompanyName().equals(a))
-            {
+
+            if(re.getCompanyName().equals(usac.getUsername()))
+            { 
                 Vehicle v= new Vehicle(vehiclename, type, priceper, capacity);
-                rentlistv.addVehicle(r, v);
+                rentlistv.addVehicle(re, v);
             }  
+            
+        RentalCompany1 cwjp = new RentalCompany1(p,  usac,log);
+//      p.removeAll();
+        p.add("Ad", cwjp);
+        ((java.awt.CardLayout) p.getLayout()).next(p); 
         }
+            
 
     }//GEN-LAST:event_AddBtnActionPerformed
 

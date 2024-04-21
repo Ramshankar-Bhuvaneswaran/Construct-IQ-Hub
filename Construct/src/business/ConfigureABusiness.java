@@ -3,11 +3,8 @@
  * and open the template in the editor.
  */
 package business;
-
-import Advertising.AdCampaign;
-import Advertising.AdCampaignList;
+;
 import Advertising.AdvertisingOptions;
-import Advertising.CampaignPerformance;
 import Advertising.MediaPartner;
 import Advertising.MediaandAdoption;
 import Logistics.Booking;
@@ -48,8 +45,30 @@ public class ConfigureABusiness {
         AdminOrganization adminOrganization = new AdminOrganization();
         business.getOrganizationDirectory().getOrganizationList().add(adminOrganization);
         
+        LogisticsOrganization logorg = new LogisticsOrganization();
+        business.getOrganizationDirectory().getOrganizationList().add(logorg);
+        
+        AdvertisingOrganization adorg= new AdvertisingOrganization();
+        business.getOrganizationDirectory().getOrganizationList().add(adorg);
+        
         Employee employee = new Employee();
         employee.setName("Akeem of Zamunda");
+        
+        Employee employee1 = new Employee();
+        employee1.setName("RentCompany");
+        
+        Employee employee2 = new Employee();
+        employee2.setName("LogisticsManager");
+        
+        Employee employee3 = new Employee();
+        employee3.setName("AdCompany");
+        
+        Employee employee4 = new Employee();
+        employee4.setName("AdManager");
+        
+        Employee employee5 = new Employee();
+        employee5.setName("AdCompany2");
+        
         
         UserAccount account = new UserAccount();
         account.setUsername("admin");
@@ -66,11 +85,36 @@ public class ConfigureABusiness {
         adminOrganization.getEmployeeDirectory().getEmployeeList().add(employee);
         adminOrganization.getUserAccountDirectory().getUserAccountList().add(account);
         
-        LogisticsOrganization logorg = new LogisticsOrganization();
-        business.getOrganizationDirectory().getOrganizationList().add(logorg);
+        logorg.getEmployeeDirectory().getEmployeeList().add(employee1);
+        logorg.getEmployeeDirectory().getEmployeeList().add(employee2);
+        logorg.getUserAccountDirectory().getUserAccountList().add(account2);
+        logorg.getUserAccountDirectory().getUserAccountList().add(account3);
         
-        AdvertisingOrganization adorg= new AdvertisingOrganization();
-        business.getOrganizationDirectory().getOrganizationList().add(adorg);
+        adorg.getEmployeeDirectory().getEmployeeList().add(employee3);
+        adorg.getEmployeeDirectory().getEmployeeList().add(employee4);
+        adorg.getEmployeeDirectory().getEmployeeList().add(employee5);
+        
+
+        adorg.getUserAccountDirectory().getUserAccountList().add(account4);
+        adorg.getUserAccountDirectory().getUserAccountList().add(account5);
+        adorg.getUserAccountDirectory().getUserAccountList().add(account6);
+        for(UserAccount usa:logorg.getUserAccountDirectory().getUserAccountList()){
+        if(usa.getRole() instanceof RentalCompanyRole){
+             RentalCompanyList blist= logorg.getRentalvehilist();
+        
+         RentalCompany rentalCompany = new RentalCompany(usa.getUsername());
+         blist.addVehicle(rentalCompany, null);
+        }}
+        
+        for(UserAccount usa:adorg.getUserAccountDirectory().getUserAccountList())
+        {
+        if(usa.getRole() instanceof AdCompanyRole)
+        {
+             MediaandAdoption media=adorg.getMediaadlist();
+        
+         MediaPartner adc = new MediaPartner(usa.getUsername());
+         media.addAdOption(adc, null);
+        }}
         
 
         SupplierOrganization supprg = new SupplierOrganization();
@@ -79,22 +123,26 @@ public class ConfigureABusiness {
         QAOrganization qa=new QAOrganization();
         business.getOrganizationDirectory().getOrganizationList().add(qa);
         
-        Vehicle vehicle = new Vehicle("VH101", "Truck", 2.5, 20.0, 75.0);
+        Vehicle vehicle = new Vehicle("VH101", "Truck", 2.5, 20.0);
+
+        
+//        Vehicle vehicle = new Vehicle("VH101", "Truck", 2.5, 20.0);
+
 
         
         RentalCompany rentalCompany = new RentalCompany("Best Rentals");
 //        rentalCompany.addVehicle(vehicle);
 //        RentalCompanyList l1= new RentalCompanyList();
-RentalCompanyList r=logorg.getRentalvehilist();
+        RentalCompanyList r=logorg.getRentalvehilist();
         r.addVehicle(rentalCompany, vehicle);
 
         // Display available vehicles before booking
         System.out.println("Available vehicles before booking:");
-        r.displayAllVehicles();
+//        r.displayAllVehicles();
         // Step 3: Book the vehicle for a specific order
 //        BookingList b=logorg.getRentalvehilist();
-        rentalCompany.create("BK001", "ORD001", vehicle);
-                rentalCompany.create("BK002", "ORD002", vehicle);
+//        rentalCompany.create("BK001", "ORD001", vehicle);
+//                rentalCompany.create("BK002", "ORD002", vehicle);
 
 //        rentalCompany.setBookings(booking);
 //        rentalCompany.setBookings(booking2);
@@ -123,13 +171,6 @@ RentalCompanyList r=logorg.getRentalvehilist();
         System.out.println("Media Partner and Advertising Options:");
 //        partner.displayDetails();
 
-// Step 3: Create an advertising campaign
-        AdCampaignList adlistt= adorg.getAdcampaignlist();
-        AdCampaign campaign = new AdCampaign("CAMP001", "Digital", new Date(), new Date(System.currentTimeMillis() + (1000 * 60 * 60 * 24 * 30)), 10000.00);
-        
-// Step 4: Track and display the performance of the campaign
-        CampaignPerformance performance = new CampaignPerformance("PERF001", 15000, 500, 50);
-        System.out.println("Campaign Performance Details:");
         
        SupplierDirectory sd= supprg.getSuppliers();
        Supplier s=sd.newSupplier("Hardware");
@@ -139,7 +180,12 @@ RentalCompanyList r=logorg.getRentalvehilist();
        
        
         
+    
+       
         
+
+        
+      
         return business;
         
         
