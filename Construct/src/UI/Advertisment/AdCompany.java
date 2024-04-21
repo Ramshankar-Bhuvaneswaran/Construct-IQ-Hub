@@ -196,12 +196,14 @@ public class AdCompany extends javax.swing.JPanel {
            
             if (md.getPartnerName().equals(usac.getUsername())){
                 for(AdvertisingOptions a:media.getAdOptions(md))
+            if(a!=null){
                 {
                     if(a.equals(acc))
             {
                 media.removeAdOption(md, a);
             }}
         }}
+            }
         
         
         refresh();}}
