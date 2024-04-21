@@ -109,6 +109,7 @@ public class AllBookings extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton1.setBackground(new java.awt.Color(255, 204, 204));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setText("Cancel Booking");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
