@@ -184,8 +184,17 @@ public class AdCompany extends javax.swing.JPanel {
             int dialogResult= JOptionPane.showConfirmDialog(null, "Do you like to delete the details?","Warning",DialogB);
             if (dialogResult== JOptionPane.YES_OPTION){
                 AdvertisingOptions acc= (AdvertisingOptions) jTable1.getValueAt(selectedRowIndex, 1);
-                         SelectAdOptionList selectlist = advert.getSelectedad();
-        selectlist.removeAdOption(acc);
+                 MediaandAdoption media=advert.getMediaadlist();
+SelectAdOptionList selectlist = advert.getSelectedad();
+        for(MediaPartner md:media.getPartnerAdOptions().keySet())
+            
+        {
+           
+            if (md.getPartnerName().equals(usac.getUsername()))
+            {selectlist.removeAdOption(md,acc);
+            }}
+        
+        
         refresh();}}
         
     }//GEN-LAST:event_jButton3ActionPerformed

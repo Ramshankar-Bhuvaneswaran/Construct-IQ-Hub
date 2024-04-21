@@ -149,13 +149,15 @@ public class ConfigureABusiness {
          media.addAdOption(adc, null);
         }}
         
-        Vehicle vehicle = new Vehicle("VH101", "Truck", 2.5, 75.0);
-        
+
         SupplierOrganization supprg = new SupplierOrganization();
         business.getOrganizationDirectory().getOrganizationList().add(supprg);
         
         QAOrganization qa=new QAOrganization();
         business.getOrganizationDirectory().getOrganizationList().add(qa);
+        
+        Vehicle vehicle = new Vehicle("VH101", "Truck", 2.5, 20.0);
+
         
 //        Vehicle vehicle = new Vehicle("VH101", "Truck", 2.5, 20.0);
 
@@ -208,6 +210,9 @@ public class ConfigureABusiness {
        ImageIcon image= new ImageIcon(ConfigureABusiness.class.getResource("/images/building.jpg"));
        Product p=pc.newProduct("Steel claw hammer",25,"16 oz weight, comfortable rubber grip, durable and perfect for general carpentry" , 500, image);
        
+       
+        
+    
        
         
         

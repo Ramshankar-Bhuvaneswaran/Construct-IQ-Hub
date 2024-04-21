@@ -4,8 +4,10 @@
  */
 package business.Role;
 
+import UI.Supplier.sendEmail;
 import business.Business;
 import business.Organization.Organization;
+import business.Organization.SupplierOrganization;
 import business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
@@ -17,7 +19,7 @@ public class CivilEngineer extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Business business) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new sendEmail(userProcessContainer,account,(SupplierOrganization) organization,business );
     }
     
 }
