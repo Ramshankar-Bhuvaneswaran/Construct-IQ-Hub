@@ -25,7 +25,7 @@ public class SelectAdOptionList implements Iterable<AdvertisingOptions> {
      this.SelectedAdOptions= new HashMap<>();
     }
      // Method to add an AdvertisingOptions object to the adlist
-    
+     
     public void addAdOption(MediaPartner partner, AdvertisingOptions adOption) {
         // Check if the media partner already exists in the map
         List<AdvertisingOptions> options = SelectedAdOptions.get(partner);
