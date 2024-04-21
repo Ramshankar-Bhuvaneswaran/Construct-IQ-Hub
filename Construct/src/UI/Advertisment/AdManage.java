@@ -11,6 +11,8 @@ import Advertising.SelectAdOptionList;
 import business.Business;
 import business.Organization.AdvertisingOrganization;
 import business.UserAccount.UserAccount;
+import java.util.ArrayList;
+import java.util.HashSet;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -28,24 +30,32 @@ public class AdManage extends javax.swing.JPanel {
     UserAccount usac;
     Business s;
     AdvertisingOrganization advert;
-    public AdManage(JPanel pan,UserAccount usac,AdvertisingOrganization advert,Business a) {
+    public AdManage(JPanel pan,UserAccount usac,AdvertisingOrganization advert) {
                 this.advert=advert;
         this.usac=usac;
         this.p=pan;
-        this.s=a;
+        
         initComponents();
         jComboBox1.removeAllItems();
-                MediaandAdoption media=advert.getMediaadlist();
-        
+         MediaandAdoption media=advert.getMediaadlist();
+        ArrayList<String> inputList = new ArrayList<>();
         for(MediaPartner md:media.getPartnerAdOptions().keySet())
         {
-//                {if (md.getPartnerName().equals(cname)){
-                    for(AdvertisingOptions adop: media.getAdOptions(md)){
-                        String medium= adop.getPlatformType();
-        jComboBox1.addItem(medium);
-        }}  
+        for(AdvertisingOptions adop: media.getAdOptions(md))
+        {
+            if(adop!=null)
+            {            System.out.println(adop.getPlatformType());
+            String medium= adop.getPlatformType();
+            inputList.add(medium);
+        }}
+        }
+        HashSet<String> uniqueSet = new HashSet<>(inputList);
+        for(String a: uniqueSet){
+                        jComboBox1.addItem(a);
+
+        }  
     }
-    public void refresh()
+    public void refresh(String medium)
     {
        int rc = jTable1.getRowCount();
         int i;
@@ -57,24 +67,28 @@ public class AdManage extends javax.swing.JPanel {
 
         for(MediaPartner md:media.getPartnerAdOptions().keySet())
         {
-           {
-            if (md.getPartnerName().equals(usac.getUsername()))
-            {
+           
+           
             for(AdvertisingOptions adop: media.getAdOptions(md))
             {
-            Object[] row = new Object[5];
-            row[0] = 1;
-            row[1] =adop.getOptionID();
+                if(adop!=null){
+                    if(adop.getPlatformType().equals(medium)){
+
+            Object[] row = new Object[4];
+//            row[0] = 1;
+            row[0] =adop;
 //            row[2] = adop.getPlatformType();
 //            
-            row[2] = adop.getTargetAudience() ; 
-            row[3]=adop.getCostPerUnit();
+            row[1] = adop.getTargetAudience() ; 
+            row[2]=adop.getCostPerUnit();
+//            row[3]=media.getAdOptions(md);
 //
             ((DefaultTableModel) jTable1.getModel()).addRow(row);
             }
-            }
+                        
         }    
         }   
+        }
 
     
     }
@@ -90,10 +104,10 @@ public class AdManage extends javax.swing.JPanel {
         for(AdvertisingOptions ad: selectlist)
         {
             Object[] row = new Object[5];
-            row[0] = 1;
-            row[1] =ad.getOptionID();
-            row[2] = ad.getTargetAudience() ; 
-            row[3]=ad.getCostPerUnit();
+            row[0] = ad;
+//            row[1] =ad.getOptionID();
+            row[1] = ad.getTargetAudience() ; 
+            row[2]=ad.getCostPerUnit();
             ((DefaultTableModel) jTable2.getModel()).addRow(row);
             Cost=(int) (Cost+ad.getCostPerUnit());
             
@@ -128,19 +142,20 @@ public class AdManage extends javax.swing.JPanel {
         Budget1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         DeleteBtn = new javax.swing.JButton();
+        Search = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Advertisement Managing");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Idx", "PlanName", "Audience", "CostPerUnit"
+                "PlanName", "Audience", "CostPerUnit"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -163,13 +178,13 @@ public class AdManage extends javax.swing.JPanel {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Idx", "PlanName", "Audience", "CostPerUnit"
+                "PlanName", "Audience", "CostPerUnit"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
@@ -197,6 +212,13 @@ public class AdManage extends javax.swing.JPanel {
             }
         });
 
+        Search.setText("Search");
+        Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,27 +235,30 @@ public class AdManage extends javax.swing.JPanel {
                                 .addComponent(BookBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(127, 127, 127)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(Budget, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(Search)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(Budget, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(Budget1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(DeleteBtn)
-                            .addGap(39, 39, 39)
+                            .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
                             .addComponent(BookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,31 +266,33 @@ public class AdManage extends javax.swing.JPanel {
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Budget, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Search))
+                    .addComponent(Budget, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addComponent(BookBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(Budget1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(BookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(DeleteBtn)))
-                .addGap(49, 49, 49))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -277,16 +304,11 @@ public class AdManage extends javax.swing.JPanel {
             return;
         }
         AdvertisingOptions acc= (AdvertisingOptions) jTable1.getValueAt(row, 0);
-        SelectAdOptionList selectlist = advert.getSelectedad();
-        MediaandAdoption media=advert.getMediaadlist();
-        for(MediaPartner md:media.getPartnerAdOptions().keySet())
-        {
-            if (md.getPartnerName().equals(usac.getUsername())){
-                selectlist.addAdOption(md,acc);
-                
-            } 
-        }
         
+        SelectAdOptionList selectlist = advert.getSelectedad();
+        
+        
+        selectlist.addAdOption(acc); 
          JOptionPane.showMessageDialog(this, "Added to advertising plan", "Info", JOptionPane.INFORMATION_MESSAGE);           
          refresh2();
         
@@ -302,14 +324,8 @@ public class AdManage extends javax.swing.JPanel {
         AdvertisingOptions acc= (AdvertisingOptions) jTable2.getValueAt(selectedRowIndex, 0);
         
         SelectAdOptionList selectlist = advert.getSelectedad();
-         MediaandAdoption media=advert.getMediaadlist();
-        for(MediaPartner md:media.getPartnerAdOptions().keySet())
-        {
-            if (md.getPartnerName().equals(usac.getUsername())){
-                selectlist.removeAdOption(md,acc);
+                selectlist.removeAdOption(acc);
                 
-            } 
-        }
         refresh2();}}
         // TODO add your handling code here:
     }//GEN-LAST:event_DeleteBtnActionPerformed
@@ -322,6 +338,13 @@ public class AdManage extends javax.swing.JPanel {
         ((java.awt.CardLayout) p.getLayout()).next(p);
     }//GEN-LAST:event_BookBtnActionPerformed
 
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
+        // TODO add your handling code here
+        String medium = (String) jComboBox1.getSelectedItem();
+
+        refresh(medium);
+    }//GEN-LAST:event_SearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BookBtn;
@@ -329,6 +352,7 @@ public class AdManage extends javax.swing.JPanel {
     private javax.swing.JLabel Budget;
     private javax.swing.JLabel Budget1;
     private javax.swing.JButton DeleteBtn;
+    private javax.swing.JButton Search;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

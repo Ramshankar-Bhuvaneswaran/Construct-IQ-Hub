@@ -333,36 +333,7 @@ account6.setUsername("adcompany2");
 account6.setPassword("ad2pass");
 account6.setRole(new AdCompanyRole()); // Assuming the same role as AdCompany
 account6.setEmployee(employee5);
-        
-UserAccount account2 = new UserAccount();
-account2.setUsername("rentcompany");
-account2.setPassword("rentpass");
-account2.setRole(new RentalCompanyRole()); // Custom role for rent company
-account2.setEmployee(employee1);
 
-UserAccount account3 = new UserAccount();
-account3.setUsername("logistics");
-account3.setPassword("logipass");
-account3.setRole(new LogisticsManagerRole()); // Custom role for logistics manager
-account3.setEmployee(employee2);
-
-UserAccount account4 = new UserAccount();
-account4.setUsername("adcompany");
-account4.setPassword("adpass");
-account4.setRole(new AdCompanyRole()); // Custom role for advertising company
-account4.setEmployee(employee3);
-
-UserAccount account5 = new UserAccount();
-account5.setUsername("admanager");
-account5.setPassword("managepass");
-account5.setRole(new AdManagerRole()); // Custom role for ad manager
-account5.setEmployee(employee4);
-
-UserAccount account6 = new UserAccount();
-account6.setUsername("adcompany2");
-account6.setPassword("ad2pass");
-account6.setRole(new AdCompanyRole()); // Assuming the same role as AdCompany
-account6.setEmployee(employee5);
         adminOrganization.getEmployeeDirectory().getEmployeeList().add(employee);
         adminOrganization.getUserAccountDirectory().getUserAccountList().add(account);
         

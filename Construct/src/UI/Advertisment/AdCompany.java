@@ -29,17 +29,19 @@ public class AdCompany extends javax.swing.JPanel {
     UserAccount usac;
     AdvertisingOrganization advert;
     
-    public AdCompany(JPanel pan,UserAccount usac,AdvertisingOrganization advert,Business a) {
+    public AdCompany(JPanel pan,UserAccount usac,AdvertisingOrganization advert) {
         this.p=pan;
-        this.s=a;
+     
         this.advert=advert;
         this.usac=usac;
         initComponents();
         
         String cname= usac.getUsername();
         jLabel2.setText(cname);
+        refresh();
     }
-    public void refresh(){
+    public void refresh()
+    {
        int rc = jTable1.getRowCount();
         int i;
         for (i = rc - 1; i >= 0; i--) {
@@ -53,16 +55,18 @@ public class AdCompany extends javax.swing.JPanel {
                 
                 {if (md.getPartnerName().equals(cname)){
                     for(AdvertisingOptions adop: media.getAdOptions(md)){
-      Object[] row = new Object[5];
-            row[0] = 1;
-            row[1] =adop.getOptionID();
-            row[2] = adop.getPlatformType();
+                        if(adop!=null){
+            Object[] row = new Object[5];
+//            row[0] = 1;
+            row[0] =adop;
+            row[1] = adop.getPlatformType();
 //            
-           row[3] = adop.getTargetAudience() ; 
-           row[4]=adop.getCostPerUnit();
+           row[2] = adop.getTargetAudience() ; 
+           row[3]=adop.getCostPerUnit();
 //
             ((DefaultTableModel) jTable1.getModel()).addRow(row);}
                 }}
+                }
     
     
     
@@ -93,13 +97,13 @@ public class AdCompany extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Idx", "PlanName", "Medium", "Audience", "CostPerUnit"
+                "PlanName", "Medium", "Audience", "CostPerUnit"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -183,16 +187,21 @@ public class AdCompany extends javax.swing.JPanel {
             int DialogB=  JOptionPane.YES_NO_OPTION;
             int dialogResult= JOptionPane.showConfirmDialog(null, "Do you like to delete the details?","Warning",DialogB);
             if (dialogResult== JOptionPane.YES_OPTION){
-                AdvertisingOptions acc= (AdvertisingOptions) jTable1.getValueAt(selectedRowIndex, 1);
+                AdvertisingOptions acc= (AdvertisingOptions) jTable1.getValueAt(selectedRowIndex, 0);
                  MediaandAdoption media=advert.getMediaadlist();
-SelectAdOptionList selectlist = advert.getSelectedad();
+                 
         for(MediaPartner md:media.getPartnerAdOptions().keySet())
             
         {
            
-            if (md.getPartnerName().equals(usac.getUsername()))
-            {selectlist.removeAdOption(md,acc);
+            if (md.getPartnerName().equals(usac.getUsername())){
+                for(AdvertisingOptions a:media.getAdOptions(md))
+                {
+                    if(a.equals(acc))
+            {
+                media.removeAdOption(md, a);
             }}
+        }}
         
         
         refresh();}}
