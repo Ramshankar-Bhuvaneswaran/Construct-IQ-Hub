@@ -20,6 +20,125 @@ import business.Employee.Employee;
 import business.Organization.AdminOrganization;
 import business.Organization.AdvertisingOrganization;
 import business.Organization.LogisticsOrganization;
+import business.UserAccount.UserAccount;
+import Advertising.AdvertisingOptions;
+import Advertising.MediaPartner;
+import Advertising.MediaandAdoption;
+import Logistics.Booking;
+import Logistics.BookingList;
+import Logistics.RentalCompany;
+import Logistics.RentalCompanyList;
+import Logistics.Vehicle;
+import Supplier.Product;
+import Supplier.ProductCatalog;
+import Supplier.Supplier;
+import Supplier.SupplierDirectory;
+import business.Employee.Employee;
+import business.Organization.AdminOrganization;
+import business.Organization.AdvertisingOrganization;
+import business.Organization.LogisticsOrganization;
+import business.Role.RentalCompanyRole;
+import Advertising.AdvertisingOptions;
+import Advertising.MediaPartner;
+import Advertising.MediaandAdoption;
+import Logistics.Booking;
+import Logistics.BookingList;
+import Logistics.RentalCompany;
+import Logistics.RentalCompanyList;
+import Logistics.Vehicle;
+import Supplier.Product;
+import Supplier.ProductCatalog;
+import Supplier.Supplier;
+import Supplier.SupplierDirectory;
+import business.Employee.Employee;
+import business.Organization.AdminOrganization;
+import business.Organization.AdvertisingOrganization;
+import business.Organization.LogisticsOrganization;
+import business.UserAccount.UserAccount;
+import Advertising.AdvertisingOptions;
+import Advertising.MediaPartner;
+import Advertising.MediaandAdoption;
+import Logistics.Booking;
+import Logistics.BookingList;
+import Logistics.RentalCompany;
+import Logistics.RentalCompanyList;
+import Logistics.Vehicle;
+import Supplier.Product;
+import Supplier.ProductCatalog;
+import Supplier.Supplier;
+import Supplier.SupplierDirectory;
+import business.Employee.Employee;
+import business.Organization.AdminOrganization;
+import business.Organization.AdvertisingOrganization;
+import business.Organization.LogisticsOrganization;
+import business.Role.AdCompanyRole;
+import Advertising.AdvertisingOptions;
+import Advertising.MediaPartner;
+import Advertising.MediaandAdoption;
+import Logistics.Booking;
+import Logistics.BookingList;
+import Logistics.RentalCompany;
+import Logistics.RentalCompanyList;
+import Logistics.Vehicle;
+import Supplier.Product;
+import Supplier.ProductCatalog;
+import Supplier.Supplier;
+import Supplier.SupplierDirectory;
+import business.Employee.Employee;
+import business.Organization.AdminOrganization;
+import business.Organization.AdvertisingOrganization;
+import business.Organization.LogisticsOrganization;
+import business.UserAccount.UserAccount;
+import Advertising.AdvertisingOptions;
+import Advertising.MediaPartner;
+import Advertising.MediaandAdoption;
+import Logistics.Booking;
+import Logistics.BookingList;
+import Logistics.RentalCompany;
+import Logistics.RentalCompanyList;
+import Logistics.Vehicle;
+import Supplier.Product;
+import Supplier.ProductCatalog;
+import Supplier.Supplier;
+import Supplier.SupplierDirectory;
+import business.Employee.Employee;
+import business.Organization.AdminOrganization;
+import business.Organization.AdvertisingOrganization;
+import business.Organization.LogisticsOrganization;
+import business.Role.RentalCompanyRole;
+import Advertising.AdvertisingOptions;
+import Advertising.MediaPartner;
+import Advertising.MediaandAdoption;
+import Logistics.Booking;
+import Logistics.BookingList;
+import Logistics.RentalCompany;
+import Logistics.RentalCompanyList;
+import Logistics.Vehicle;
+import Supplier.Product;
+import Supplier.ProductCatalog;
+import Supplier.Supplier;
+import Supplier.SupplierDirectory;
+import business.Employee.Employee;
+import business.Organization.AdminOrganization;
+import business.Organization.AdvertisingOrganization;
+import business.Organization.LogisticsOrganization;
+import business.UserAccount.UserAccount;
+import Advertising.AdvertisingOptions;
+import Advertising.MediaPartner;
+import Advertising.MediaandAdoption;
+import Logistics.Booking;
+import Logistics.BookingList;
+import Logistics.RentalCompany;
+import Logistics.RentalCompanyList;
+import Logistics.Vehicle;
+import Supplier.Product;
+import Supplier.ProductCatalog;
+import Supplier.Supplier;
+import Supplier.SupplierDirectory;
+import business.Employee.Employee;
+import business.Organization.AdminOrganization;
+import business.Organization.AdvertisingOrganization;
+import business.Organization.LogisticsOrganization;
 import business.Role.AdCompanyRole;
 import business.Role.AdManagerRole;
 import business.Organization.QAOrganization;
@@ -80,6 +199,7 @@ public class ConfigureABusiness {
         account.setRole(new AdminRole());
         account.setEmployee(employee);
         
+
         UserAccount account2 = new UserAccount();
         account2.setUsername("ola");
         account2.setPassword("ola");
@@ -110,11 +230,13 @@ public class ConfigureABusiness {
         account6.setRole(new AdCompanyRole()); // Assuming the same role as AdCompany
         account6.setEmployee(employee5);
 
-        UserAccount account1 = new UserAccount();
-        account1.setUsername("civil");
-        account1.setPassword("civil");
-        account1.setRole(new CivilEngineer());
-        account1.setEmployee(employee);
+
+
+        UserAccount account7 = new UserAccount();
+        account7.setUsername("civil");
+        account7.setPassword("civil");
+        account7.setRole(new CivilEngineer());
+        account7.setEmployee(employee);
         
         adminOrganization.getEmployeeDirectory().getEmployeeList().add(employee);
         adminOrganization.getUserAccountDirectory().getUserAccountList().add(account);
@@ -128,6 +250,7 @@ public class ConfigureABusiness {
         adorg.getEmployeeDirectory().getEmployeeList().add(employee4);
         adorg.getEmployeeDirectory().getEmployeeList().add(employee5);
         
+
         adorg.getUserAccountDirectory().getUserAccountList().add(account4);
         adorg.getUserAccountDirectory().getUserAccountList().add(account5);
         adorg.getUserAccountDirectory().getUserAccountList().add(account6);
@@ -160,6 +283,7 @@ public class ConfigureABusiness {
 
         
 //        Vehicle vehicle = new Vehicle("VH101", "Truck", 2.5, 20.0);
+
 
         
         RentalCompany rentalCompany = new RentalCompany("Best Rentals");
@@ -217,7 +341,7 @@ public class ConfigureABusiness {
         
 
         
-        
+      
         return business;
         
         
