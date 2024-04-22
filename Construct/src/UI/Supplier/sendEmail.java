@@ -20,6 +20,12 @@ import javax.swing.table.DefaultTableModel;
 import business.Business;
 import business.Organization.SupplierOrganization;
 import business.UserAccount.UserAccount;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 
@@ -57,30 +63,36 @@ public class sendEmail extends javax.swing.JPanel {
         setupTableTextWrap(); 
 //
 //        
-//        String FromEmail ="saisrunith12@gmail.com";
-//        String ToEmail="saisrunith54@gmail.com";
-//        String FromEmailPassword ="Shivani123$";
-//        Properties properties= new Properties();
-//        properties.put("mail.smtp.auth", "true");
-//        properties.put("mail.smtp.startls.enable", "true");
-//        properties.put("mail.smtp.host", "smtp.gmail.com");
-//        properties.put("mail.smtp.port", "587");
+        String FromEmail ="saisrunith12@gmail.com";
+        String ToEmail="saisrunith54@gmail.com";
+        String FromEmailPassword ="nqna xxem bqjs lukn";
+       Properties properties= new Properties();
+       properties.put("mail.smtp.auth", "true");
+      properties.put("mail.smtp.startls.enable", "true");
+      properties.put("mail.smtp.host", "smtp.gmail.com");
+      properties.put("mail.smtp.port", "587");
+      
+
+      Session session =Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
+           protected PasswordAuthentication getPasswordAuthentication(){
+              return new PasswordAuthentication(FromEmail, FromEmailPassword);
+           } 
+     });
         
-//        Session session =Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
-//           protected PasswordAuthentication getPasswordAuthentication(){
-//               return new PasswordAuthentication(FromEmail, FromEmailPassword);
-//           } 
-//        });
-        
-//        try{
-//            MimeMessage message = new MimeMessage(session);
-//            message.setFrom(new InternetAddress(FromEmail));
-//            message.addRecipient(Message.RecipientType.TO, new InternetAddress(ToEmail));
+        try{
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(FromEmail));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(ToEmail));
+            InternetAddress address;
 //            Transport.send(message);
-//        }catch(Exception ex){
-//            System.out.println(""+ex);
-//        }
-//        
+            message.setSubject("Status of the fund Approval");
+            message.setText("The request of fund raise has been approved");
+            Transport transport = session.getTransport("smtp");
+            transport.connect("smtp.gmail.com","saisrunith12@gmail.com","nqna xxem bqjs lukn");
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "error encountered");
+        }
+       
         
         
         
@@ -114,7 +126,7 @@ public class sendEmail extends javax.swing.JPanel {
 //        add(panel);
        
 //        setVisible(true);
-    }
+//    }
 
     // Method to send email using JavaMail API
 //    private void sendEmail(String from, String to, String subject, String text) {
@@ -135,7 +147,7 @@ public class sendEmail extends javax.swing.JPanel {
 //        } catch (MessagingException mex) {
 //            mex.printStackTrace();
 //        }
-//    }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
