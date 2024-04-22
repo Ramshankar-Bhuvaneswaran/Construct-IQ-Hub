@@ -14,6 +14,7 @@ import business.UserAccount.UserAccount;
 import java.util.ArrayList;
 import java.util.Properties;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -164,39 +165,74 @@ public class GovermentApplication extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        ApplicationForm s = (ApplicationForm) jTable1.getValueAt(row, 0);
-        
-        s.setStatus("Approved");
-        refreshpod();
-        
-          String FromEmail ="saisrunith12@gmail.com";
-        String ToEmail="saisrunith54@gmail.com";
-        String FromEmailPassword ="nqna xxem bqjs lukn";
-       Properties properties= new Properties();
-       properties.put("mail.smtp.auth", "true");
-      properties.put("mail.smtp.startls.enable", "true");
-      properties.put("mail.smtp.host", "smtp.gmail.com");
-      properties.put("mail.smtp.port", "587");
-      
+//        ApplicationForm s = (ApplicationForm) jTable1.getValueAt(row, 0);
+//        
+//        s.setStatus("Approved");
+//        refreshpod();
+//        
+//          String FromEmail ="saisrunith12@gmail.com";
+//        String ToEmail="saisrunith54@gmail.com";
+//        String FromEmailPassword ="nqna xxem bqjs lukn";
+//       Properties properties= new Properties();
+//       properties.put("mail.smtp.auth", "true");
+//      properties.put("mail.smtp.startls.enable", "true");
+//      properties.put("mail.smtp.host", "smtp.gmail.com");
+//      properties.put("mail.smtp.port", "587");
+//      
+//
+//      Session session =Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
+//           protected PasswordAuthentication getPasswordAuthentication(){
+//              return new PasswordAuthentication(FromEmail, FromEmailPassword);
+//           } 
+//     });
+//        
+//        try{
+//            MimeMessage message = new MimeMessage(session);
+//            message.setFrom(new InternetAddress(FromEmail));
+//            message.addRecipient(Message.RecipientType.TO, new InternetAddress(ToEmail));
+//            InternetAddress address;
+////            Transport.send(message);
+//            message.setSubject("Status of the fund Approval");
+//            message.setText("The request of fund raise has been approved");
+//            Transport transport = session.getTransport("smtp");
+//            transport.connect("smtp.gmail.com","saisrunith12@gmail.com","nqna xxem bqjs lukn");
+//        }catch(Exception ex){
+//            JOptionPane.showMessageDialog(null, "error encountered");
+//        }
 
-      Session session =Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
-           protected PasswordAuthentication getPasswordAuthentication(){
-              return new PasswordAuthentication(FromEmail, FromEmailPassword);
-           } 
-     });
-        
-        try{
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(FromEmail));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(ToEmail));
-            InternetAddress address;
-//            Transport.send(message);
-            message.setSubject("Status of the fund Approval");
-            message.setText("The request of fund raise has been approved");
-            Transport transport = session.getTransport("smtp");
-            transport.connect("smtp.gmail.com","saisrunith12@gmail.com","nqna xxem bqjs lukn");
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "error encountered");
+final String username = "saisrunith12@gmail.com"; //sender's email
+        final String password = "nqna xxem bqjs lukn"; // create an app specific password
+ 
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+ 
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+ 
+        try {
+ 
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse("saisrunith54@gmail.com") );
+            message.setSubject("Testing Gmail ");
+            message.setText("Your Site is Approved for Construction");
+ 
+            Transport.send(message);
+            System.out.println("Done");
+ 
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
        
         
@@ -269,6 +305,41 @@ public class GovermentApplication extends javax.swing.JPanel {
         
         s.setStatus("Rejected");
         refreshpod();
+        final String username = "saisrunith12@gmail.com"; //sender's email
+        final String password = "nqna xxem bqjs lukn"; // create an app specific password
+ 
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+ 
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+ 
+        try {
+ 
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse("saisrunith54@gmail.com") );
+            message.setSubject("Testing Gmail ");
+            message.setText("Rejecting your site Permission");
+ 
+            Transport.send(message);
+            System.out.println("Done");
+ 
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+       
         
         
         
@@ -339,7 +410,7 @@ public class GovermentApplication extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void refreshpod() {
-         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         ArrayList<ApplicationForm> afd=qaOrganization.getAfd().getForms();
            
