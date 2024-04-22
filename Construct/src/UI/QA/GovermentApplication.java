@@ -97,7 +97,7 @@ public class GovermentApplication extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Site Name", "Product Description", "Status"
+                "Site Name", "Site Description", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -349,7 +349,7 @@ public class GovermentApplication extends javax.swing.JPanel {
             
             row[0] = af;
             row[1] = af.getSiteName();
-            row[2] = af.getSiteDetails();
+            row[2] = af.isStatus();
             
             ((DefaultTableModel) jTable1.getModel()).addRow(row);
     }

@@ -861,7 +861,7 @@ public class sendEmail extends javax.swing.JPanel {
                 }
             }
         });
-        tableJ.setRowHeight(60);
+        tableJ.setRowHeight(100);
     }
     public class ImageRenderer extends DefaultTableCellRenderer {
  
