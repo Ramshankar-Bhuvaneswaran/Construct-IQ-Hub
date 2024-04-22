@@ -63,36 +63,7 @@ public class sendEmail extends javax.swing.JPanel {
         setupTableTextWrap(); 
 //
 //        
-        String FromEmail ="saisrunith12@gmail.com";
-        String ToEmail="saisrunith54@gmail.com";
-        String FromEmailPassword ="nqna xxem bqjs lukn";
-       Properties properties= new Properties();
-       properties.put("mail.smtp.auth", "true");
-      properties.put("mail.smtp.startls.enable", "true");
-      properties.put("mail.smtp.host", "smtp.gmail.com");
-      properties.put("mail.smtp.port", "587");
       
-
-      Session session =Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
-           protected PasswordAuthentication getPasswordAuthentication(){
-              return new PasswordAuthentication(FromEmail, FromEmailPassword);
-           } 
-     });
-        
-        try{
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(FromEmail));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(ToEmail));
-            InternetAddress address;
-//            Transport.send(message);
-            message.setSubject("Status of the fund Approval");
-            message.setText("The request of fund raise has been approved");
-            Transport transport = session.getTransport("smtp");
-            transport.connect("smtp.gmail.com","saisrunith12@gmail.com","nqna xxem bqjs lukn");
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "error encountered");
-        }
-       
         
         
         
@@ -890,7 +861,7 @@ public class sendEmail extends javax.swing.JPanel {
                 }
             }
         });
-        tableJ.setRowHeight(60);
+        tableJ.setRowHeight(100);
     }
     public class ImageRenderer extends DefaultTableCellRenderer {
  

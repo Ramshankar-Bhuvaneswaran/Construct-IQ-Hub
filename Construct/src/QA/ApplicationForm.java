@@ -17,7 +17,7 @@ public class ApplicationForm {
     private String siteDetails;
     private File xyz;
     private ImageIcon Ii;
-    private String Status="Pending";
+    private String Status;
     
     
 
@@ -35,6 +35,7 @@ public class ApplicationForm {
         this.siteName = siteName;
         this.siteDetails = siteDetails;
         this.Ii=Ii;
+        this.Status="Pending";
     
         
         
@@ -58,6 +59,12 @@ public class ApplicationForm {
 
     public File getXyz() {
         return xyz;
+    }
+    
+    @Override
+    
+    public String toString(){
+        return siteName;
     }
     
 }
