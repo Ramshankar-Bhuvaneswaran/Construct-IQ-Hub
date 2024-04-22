@@ -12,6 +12,13 @@ import business.Organization.Organization;
 import business.Organization.QAOrganization;
 import business.UserAccount.UserAccount;
 import java.util.ArrayList;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -161,6 +168,37 @@ public class GovermentApplication extends javax.swing.JPanel {
         
         s.setStatus("Approved");
         refreshpod();
+        
+          String FromEmail ="saisrunith12@gmail.com";
+        String ToEmail="saisrunith54@gmail.com";
+        String FromEmailPassword ="nqna xxem bqjs lukn";
+       Properties properties= new Properties();
+       properties.put("mail.smtp.auth", "true");
+      properties.put("mail.smtp.startls.enable", "true");
+      properties.put("mail.smtp.host", "smtp.gmail.com");
+      properties.put("mail.smtp.port", "587");
+      
+
+      Session session =Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
+           protected PasswordAuthentication getPasswordAuthentication(){
+              return new PasswordAuthentication(FromEmail, FromEmailPassword);
+           } 
+     });
+        
+        try{
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(FromEmail));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(ToEmail));
+            InternetAddress address;
+//            Transport.send(message);
+            message.setSubject("Status of the fund Approval");
+            message.setText("The request of fund raise has been approved");
+            Transport transport = session.getTransport("smtp");
+            transport.connect("smtp.gmail.com","saisrunith12@gmail.com","nqna xxem bqjs lukn");
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "error encountered");
+        }
+       
         
         
         

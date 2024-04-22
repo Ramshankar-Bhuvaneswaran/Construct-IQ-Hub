@@ -42,6 +42,8 @@ import Logistics.BookingList;
 import Logistics.RentalCompany;
 import Logistics.RentalCompanyList;
 import Logistics.Vehicle;
+import QA.ApplicationForm;
+import QA.ApplicationFormDirectory;
 import Supplier.Product;
 import Supplier.ProductCatalog;
 import Supplier.Supplier;
@@ -161,16 +163,25 @@ account6.setEmployee(employee5);
 
 
  UserAccount account7 = new UserAccount();
-        account1.setUsername("govtofficer");
-        account1.setPassword("govtofficer");
-        account1.setRole(new GovtOfficerRole());
-        account1.setEmployee(employee7);
+        account7.setUsername("govtofficer");
+        account7.setPassword("govtofficer");
+        account7.setRole(new GovtOfficerRole());
+        account7.setEmployee(employee7);
         
         UserAccount account8 = new UserAccount();
-        account1.setUsername("govtofficer");
-        account1.setPassword("govtofficer");
-        account1.setRole(new CivilEngineer());
-        account1.setEmployee(employee8);
+        account8.setUsername("govtofficer");
+        account8.setPassword("govtofficer");
+        account8.setRole(new CivilEngineer());
+        account8.setEmployee(employee8);
+        
+        UserAccount account9 = new UserAccount();
+        account9.setUsername("supplier");
+        account9.setPassword("supplier");
+        account9.setRole(new CivilEngineer());
+        account9.setEmployee(employee9);
+        
+        
+        
         
 
         adminOrganization.getEmployeeDirectory().getEmployeeList().add(employee);
@@ -193,7 +204,7 @@ account6.setEmployee(employee5);
         if(usa.getRole() instanceof RentalCompanyRole){
         RentalCompanyList blist= logorg.getRentalvehilist();
         
-         RentalCompany rentalCompany = new RentalCompany(usa.getUsername());
+        RentalCompany rentalCompany = new RentalCompany(usa.getUsername());
          blist.addVehicle(rentalCompany, null);
         }}
         
@@ -210,6 +221,14 @@ account6.setEmployee(employee5);
 
         SupplierOrganization supprg = new SupplierOrganization();
         business.getOrganizationDirectory().getOrganizationList().add(supprg);
+        
+        QAOrganization Qao = new QAOrganization();
+        business.getOrganizationDirectory().getOrganizationList().add(Qao);
+        
+        supprg.getEmployeeDirectory().getEmployeeList().add(employee9);
+        adminOrganization.getUserAccountDirectory().getUserAccountList().add(account9);
+        
+        
         
         QAOrganization qa=new QAOrganization();
         business.getOrganizationDirectory().getOrganizationList().add(qa);
@@ -262,9 +281,19 @@ account6.setEmployee(employee5);
        Supplier s=sd.newSupplier("Hardware");
        ProductCatalog pc=s.getPc();
        ImageIcon image= new ImageIcon(ConfigureABusiness.class.getResource("/images/building.jpg"));
+       
        Product p=pc.newProduct("Steel claw hammer",25,"16 oz weight, comfortable rubber grip, durable and perfect for general carpentry" , 500, image);
+       Product sledgehammer = pc.newProduct("Fiberglass Handle Sledgehammer",45,"12 lb heavy-duty head for effective demolition, shock-absorbing fiberglass handle with textured grip, long-lasting and ideal for breaking through concrete and masonry.",300,image);
+       Product tape_measure = pc.newProduct("Stainless Steel Tape Measure",15,"25 ft retractable tape, stainless steel construction for durability, with a magnetic hook and clear metric and imperial markings, suitable for all types of measuring needs.",600,image);
+       Product electric_drill = pc.newProduct("Electric Drill", 80,"Cordless 18V drill with lithium-ion battery, includes a 30-piece drill bit set, variable speed, and built-in LED light, perfect for home improvement and professional tasks.",250,image);
+       Product safety_goggles = pc.newProduct("Safety Goggles",10, "Anti-fog, scratch-resistant polycarbonate lenses, adjustable strap, provides superior eye protection in dusty or hazardous environments, meets ANSI Z87.1 standards.",800,image);
        
        
+       ApplicationFormDirectory afd= Qao.getAFormDirectory();
+       ApplicationForm af=afd.newApplicationForm("Srinivasa Apartments", "side in corner", image);
+       ApplicationForm af1=afd.newApplicationForm("Ramm Aparments", "Common Wealth Avenue", image);
+       ApplicationForm af2 = afd.newApplicationForm("Srunith Aparmtments", "Centeral Messisouri", image);
+
         
     
        
